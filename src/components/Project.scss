@@ -1,5 +1,12 @@
 .project {
-    margin: 5% 7.5% 5% 7.5%;
+    padding: 5% 7.5% 5% 7.5%;
+
+    &.flipped {
+        background-color: #f8f8f8;
+        border-top-style: solid;
+        border-top-width: 1px;
+        border-top-color: lightgrey;
+    }
 }
 
 .project-title {
@@ -24,6 +31,10 @@
     justify-content: space-between;
     align-items: center;
     text-align: right;
+    
+    &.flipped {
+        flex-direction: row-reverse;
+    }
 }
 
 .project-content-blurb {

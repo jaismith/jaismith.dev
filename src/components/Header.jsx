@@ -2,7 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
   BrowserRouter as Router,
-  Link
+  Link,
+  withRouter
 } from 'react-router-dom'
 import './Header.scss';
 
@@ -84,4 +85,4 @@ Header.defaultProps = {
   // bla: 'test',
 };
 
-export default Header;
+export default withRouter(Header);

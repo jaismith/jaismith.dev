@@ -5,35 +5,45 @@ import './Project.scss'
 import wirelessTool from '../media/wirelesstool.png';
 
 const Project = (props) => (
-  <div className="project">
+  <div className={props.flipped ? 'project flipped' : 'project'}>
     <div className="project-title">
       <div className="project-title-main">
-        ITC Wireless Tool
+        {props.name}
       </div>
       <div className="project-title-sub">
-        <b>DALI Lab</b><br />
-        Winter 2020
+        <b>{props.org}</b><br />
+        {props.date}
       </div>
     </div>
-    <div className="project-content">
+    <div className={props.flipped ? 'project-content flipped' : 'project-content'}>
       <img
-        src={wirelessTool}
-        alt="Wireless Tool web app on Macbook Pro"
+        src={props.img.src}
+        alt={props.img.alt}
         className="project-content-showcase"
       />
       <div className="project-content-blurb">
-        Dartmouth College is currently undergoing a multi-million dollar campus-wide upgrade to WiFi infrastructure. In order to prioritize upcoming building upgrades in high-traffic areas, Dartmouth ITC hired the DALI Lab to build a WiFi reporting tool that taps into Dartmouth’s networking data to track issues and overloaded access points. This project is in the final stages of development and will be publically launched later this Spring.
+        {props.blurb}
       </div>
     </div>
   </div>
 );
 
 Project.propTypes = {
-  // bla: PropTypes.string,
+  name: PropTypes.string,
+  org: PropTypes.string,
+  date: PropTypes.string,
+  blurb: PropTypes.string,
+  img: PropTypes.object,
+  flipped: PropTypes.bool
 };
 
 Project.defaultProps = {
-  // bla: 'test',
+  name: 'Project Name',
+  org: 'Organization',
+  date: 'Season Year',
+  blurb: 'What is this?',
+  img: 'media/...',
+  flipped: false,
 };
 
 export default Project;
