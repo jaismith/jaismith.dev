@@ -3,10 +3,13 @@
 
     &.flipped {
         background-color: #f8f8f8;
-        border-top-style: solid;
-        border-top-width: 1px;
-        border-top-color: lightgrey;
     }
+
+    // &:nth-child(n+2) {
+    //     border-top-style: solid;
+    //     border-top-width: 1px;
+    //     border-top-color: lightgrey;
+    // }
 }
 
 .project-title {
@@ -34,6 +37,7 @@
     
     &.flipped {
         flex-direction: row-reverse;
+        text-align: left;
     }
 }
 

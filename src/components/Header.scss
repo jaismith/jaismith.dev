@@ -1,5 +1,5 @@
 .header {
-    width: 100vw;
+    position: relative;
     height: 60vh;
     border-bottom-style: solid;
     border-bottom-width: 2px;
@@ -12,10 +12,11 @@
 }
 
 .header-box {
-    position: relative;
+    position: absolute;
     top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     width: fit-content;
     margin: auto;
 
@@ -31,24 +32,25 @@
 }
 
 .header-nav {
-    position: relative;
-    bottom: -40%;
+    position: absolute;
+    bottom: 2.5%;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
     width: fit-content;
-    margin: auto;
+    display: flex;
+    flex-direction: row;
     overflow: hidden;
+}
 
-    a {
-        text-decoration: none;
-        color: grey;
-        font-size: 15pt;
-    }
+.header-nav-item {
+    text-decoration: none;
+    color: grey;
+    font-size: 15pt;
+    padding: 0 1em 0 1em;
 
-    #active {
+    &.selected {
         text-decoration: underline;
-    }
-
-    :nth-child(n+3) {
-        padding-left: 40px;
     }
 }
 
