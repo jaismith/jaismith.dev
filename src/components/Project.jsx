@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Project.scss'
 
-import wirelessTool from '../media/wirelesstool.png';
-
 const Project = (props) => (
   <div className={props.flipped ? 'project flipped' : 'project'}>
     <div className="project-title">

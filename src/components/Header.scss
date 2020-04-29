@@ -1,9 +1,20 @@
+@import "~react-vis/dist/style";
+
 .header {
     position: relative;
-    height: 60vh;
+    height: 75vh;
     border-bottom-style: solid;
-    border-bottom-width: 2px;
+    border-bottom-width: 1px;
     border-bottom-color: lightgrey;
+}
+
+.header-chart {
+    position: absolute;
+    z-index: 0;
+    top: 70%;
+    width: 80%;
+    height: calc(30% + 50px);
+    display: flex;
 }
 
 .header-pic {
@@ -25,18 +36,12 @@
     align-items: center;
 
     padding: 2.5em;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    border-width: 1px;
-    border-color: lightgrey;
 }
 
 .header-nav {
     position: absolute;
-    bottom: 2.5%;
-    left: 50%;
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
+    top: 2.5%;
+    right: 1.5em;
     width: fit-content;
     display: flex;
     flex-direction: row;
@@ -47,7 +52,7 @@
     text-decoration: none;
     color: grey;
     font-size: 15pt;
-    padding: 0 1em 0 1em;
+    padding-left: 1em;
 
     &.selected {
         text-decoration: underline;

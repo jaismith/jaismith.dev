@@ -1,49 +1,79 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
-  NavLink,
-  withRouter
-} from 'react-router-dom'
+  NavLink, withRouter
+} from 'react-router-dom';
 import './Header.scss';
+import {
+  ResponsiveContainer, AreaChart, Area, ReferenceDot, XAxis, Label
+} from 'recharts';
+import { connect } from 'react-redux';
+import CustomLabel from './CustomLabel';
+import { getActivity } from '../actions';
 
 import profile from '../media/profile.jpeg';
 
 class Header extends PureComponent { 
   constructor(props) {
-    super(props);
-
-    this.state = {
-      loading: false,
-    };
+    super();
   }
 
-  // componentWillMount = () => {
-  //   console.log('Header will mount');
-  // }
-
-  // componentDidMount = () => {
-  //   console.log('Header mounted');
-  // }
-
-  // componentWillReceiveProps = (nextProps) => {
-  //   console.log('Header will receive props', nextProps);
-  // }
-
-  // componentWillUpdate = (nextProps, nextState) => {
-  //   console.log('Header will update', nextProps, nextState);
-  // }
-
-  // componentDidUpdate = () => {
-  //   console.log('Header did update');
-  // }
-
-  // componentWillUnmount = () => {
-  //   console.log('Header will unmount');
-  // }
+  componentDidMount = () => {
+    this.props.getActivity();
+  }
 
   render () {
+    let activity = this.props.activity.length === 0 ? 
+      this.props.fallbackActivity :
+      this.props.activity
+
+    console.log(activity);
+
     return (
       <div className="header">
+        <div className="header-chart">
+          <ResponsiveContainer>
+            <AreaChart
+              data={activity}
+              margin={{
+                top: 20,
+                right: 170,
+                bottom: 10,
+                left: 0,
+              }}
+            >
+              <defs>
+                <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
+                  <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+                </linearGradient>
+              </defs>
+              <Area 
+                type="basis" 
+                dataKey="y" 
+                stroke="#0054B4" 
+                fill="url(#grad)" />
+              <ReferenceDot
+                x={19}
+                y={activity[activity.length - 1].y}
+                r={7.5} fill={'#0054B4'} stroke={'none'}
+              >
+                <Label
+                  position={'right'}
+                  content={<CustomLabel lines={[
+                    '22 contributions',
+                    'since April 8th'
+                  ]} />}
+                />
+              </ReferenceDot>
+              <XAxis 
+                dataKey='name'
+                axisLine={false}
+                tickLine={true}
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
         <div className="header-box">
           <img
             className="header-pic"
@@ -81,11 +111,26 @@ class Header extends PureComponent {
 }
 
 Header.propTypes = {
-  // bla: PropTypes.string,
+  fallbackActivity: PropTypes.array,
+  activity: PropTypes.array,
 };
+
+// prepare default data
+let defaultData = []
+for (let i = 0; i < 20; i++) {
+  defaultData.push({ x: i, y: 1 })
+}
 
 Header.defaultProps = {
-  // bla: 'test',
+  fallbackActivity: defaultData,
 };
 
-export default withRouter(Header);
+const mapStateToProps = state => ({
+  activity: state.activity.history,
+})
+
+const mapDispatchToProps = {
+  getActivity,
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
