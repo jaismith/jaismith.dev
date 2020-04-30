@@ -14,7 +14,7 @@ import { getActivity } from '../actions';
 import profile from '../media/profile.jpeg';
 
 class Header extends PureComponent { 
-  constructor(props) {
+  constructor(_props) {
     super();
   }
 
@@ -22,19 +22,14 @@ class Header extends PureComponent {
     this.props.getActivity();
   }
 
-  render () {
-    let activity = this.props.activity.length === 0 ? 
-      this.props.fallbackActivity :
-      this.props.activity
-
-    console.log(activity);
-
+  render() {
     return (
       <div className="header">
         <div className="header-chart">
           <ResponsiveContainer>
             <AreaChart
-              data={activity}
+              data={this.props.activity}
+              baseValue={0.12}
               margin={{
                 top: 20,
                 right: 170,
@@ -48,22 +43,28 @@ class Header extends PureComponent {
                   <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
                 </linearGradient>
               </defs>
-              <Area 
-                type="basis" 
-                dataKey="y" 
-                stroke="#0054B4" 
-                fill="url(#grad)" />
+              <Area
+                type='basis'
+                dataKey='y'
+                stroke={this.props.activity[0].y === 0 ? 'transparent' : '#0054B4'}
+                fill='url(#grad)' />
               <ReferenceDot
-                x={19}
-                y={activity[activity.length - 1].y}
+                className={`header-chart-refdot ${this.props.activity[0].y === 0 ? 'hidden' : null}`}
+                x={this.props.activity.length - 1}
+                y={this.props.activity[this.props.activity.length - 1].y}
                 r={7.5} fill={'#0054B4'} stroke={'none'}
               >
                 <Label
                   position={'right'}
-                  content={<CustomLabel lines={[
-                    '22 contributions',
-                    'since April 8th'
-                  ]} />}
+                  content={<CustomLabel lines={this.props.activity[0].y !== 0 ?
+                    [
+                      `${this.props.activity.reduce((sum, val) => sum + (val.y - 5), 0)} contributions`,
+                      `since ${this.props.activity[4].name}`
+                    ] :
+                    [
+                      'Loading activity...'
+                    ]
+                  } />}
                 />
               </ReferenceDot>
               <XAxis 
@@ -111,18 +112,7 @@ class Header extends PureComponent {
 }
 
 Header.propTypes = {
-  fallbackActivity: PropTypes.array,
   activity: PropTypes.array,
-};
-
-// prepare default data
-let defaultData = []
-for (let i = 0; i < 20; i++) {
-  defaultData.push({ x: i, y: 1 })
-}
-
-Header.defaultProps = {
-  fallbackActivity: defaultData,
 };
 
 const mapStateToProps = state => ({

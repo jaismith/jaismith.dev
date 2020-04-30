@@ -23,43 +23,31 @@ export function getActivity() {
 
           // parse html
           const html = cheerio.load(res.data);
+          var activity = new Array();
 
           // loop through html elements and generate activity data
-          var activity = []
           html('g > rect').each(function(_i, _el) {
             // get datapoint date
             let date = new Date(html(this).attr('data-date'));
 
-            // if since ref
+            // add to activity, if since ref
             if (date > ref) {
               var datapoint = {
                 x: date.getDate() - ref.getDate(),
-                y: html(this).attr('data-count'),
+                y: Number(html(this).attr('data-count')) + 5,
               };
 
               if ((datapoint.x + 1) % 5 === 0) {
-                datapoint.name = `${months[date.getMonth()]} ${date.getDate()}`;
+                datapoint.name = `${months[date.getMonth()]} ${date.getDate() + 1}`;
               };
 
               activity.push(datapoint);
             }
           });
 
-          // print parsed data
-          console.log(activity)
+          dispatch({ type: ActionTypes.GET_ACTIVITY, payload: activity });
       }).catch((err) => {
           console.error(`Error fetching github contribution history: ${err.message}`);
       });
-
-    let sampleData = []
-    for (let i = 1; i <= 20; i++) {
-      sampleData.push({x: i, y: Math.random() * 5 + 2})
-    }
-    sampleData[2].name = "April 8th"
-    sampleData[7].name = "April 13th"
-    sampleData[14].name = "April 18th"
-    sampleData[19].name = "April 23rd"
-
-    dispatch({ type: ActionTypes.GET_ACTIVITY, payload: sampleData });
   };
 }
