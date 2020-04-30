@@ -14,16 +14,20 @@ let months = ['January', 'February', 'March', 'April', 'May', 'June',
 
 export function getActivity() {
   return (dispatch) => {
+    // get current time, offset by timezone
+    const localTime = new Date();
+    const utcTime = new Date(localTime - (localTime.getTimezoneOffset() * 60000));
+
     // request github constribution data
-    axios.get(GITHUB_URL)
+    axios.get(`${GITHUB_URL}?to=${utcTime.toISOString().split('T')[0]}`)
       .then((res) => {
           // set reference date (20 days ago)
-          var ref = new Date();
+          var ref = utcTime;
           ref.setDate(ref.getDate() - 20);
 
           // parse html
           const html = cheerio.load(res.data);
-          var activity = new Array();
+          var activity = [];
 
           // loop through html elements and generate activity data
           html('g > rect').each(function(_i, _el) {
@@ -37,14 +41,14 @@ export function getActivity() {
                 y: Number(html(this).attr('data-count')) + 5,
               };
 
-              if ((datapoint.x + 1) % 5 === 0) {
+              if ((activity.length + 1) % 5 === 0) {
                 datapoint.name = `${months[date.getMonth()]} ${date.getDate() + 1}`;
               };
 
               activity.push(datapoint);
             }
           });
-
+          console.log(activity);
           dispatch({ type: ActionTypes.GET_ACTIVITY, payload: activity });
       }).catch((err) => {
           console.error(`Error fetching github contribution history: ${err.message}`);
