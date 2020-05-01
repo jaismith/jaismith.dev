@@ -48,7 +48,7 @@ export function getActivity() {
               activity.push(datapoint);
             }
           });
-          console.log(activity);
+
           dispatch({ type: ActionTypes.GET_ACTIVITY, payload: activity });
       }).catch((err) => {
           console.error(`Error fetching github contribution history: ${err.message}`);

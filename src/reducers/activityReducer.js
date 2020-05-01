@@ -11,7 +11,6 @@ const initialState = {
 }
 
 const ActivityReducer = (state = initialState, action) => {
-  console.log(action.payload)
   switch(action.type) {
     case ActionTypes.GET_ACTIVITY:
       return { ...state, history: action.payload };

@@ -7,6 +7,7 @@ import {
 
 import Header from './components/Header';
 import Project from './components/Project';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -46,6 +47,13 @@ function App() {
             <Redirect to='/projects' />
           </Route>
         </Switch>
+        <Footer socialMedia={[
+          'https://twitter.com/jksmithnyc',
+          'https://github.com/jaismith',
+          'https://www.instagram.com/jai.k.smith/',
+          'https://linkedin.com/in/jaiksmith',
+          'https://www.facebook.com/jai.smith.22'
+        ]}/>
       </div>
     </Router>
   );
