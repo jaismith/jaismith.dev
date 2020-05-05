@@ -41,6 +41,16 @@ function App() {
                 }}
                 flipped
               />
+              <Project
+                name='Vidya'
+                org='Kathmandu Living Labs'
+                date='Summer 2019'
+                blurb='Produced in partnership with a local Nepali school in Kathmandu, Vidya aims to increase parent involvement in student learning, something that has been historically difficult in the area. The app allows teachers to post positive feedback on student performance in a social media feed, alongside school announcements and homework assignments, as well as facilitating one-on-one instant messaging between teachers and parents. Vidya was launched in early 2020.'
+                img={{
+                  src: require('./media/kv.png'),
+                  alt: 'Product images of Vidya App on iPhone'
+                }}
+              />
             </div>
           </Route>
           <Route path='/resume'>
@@ -56,17 +66,22 @@ function App() {
                 {
                   name: 'Give Essential',
                   location: 'USA',
-                  details: 'Humanitarian Aid, Developer'
+                  details: 'Humanitarian Aid | Developer'
                 },
                 {
                   name: 'HackDartmouth',
                   location: 'Hanover, NH',
-                  details: 'Developer, Organizer'
+                  details: 'Education | Developer, Organizer'
+                },
+                {
+                  name: 'Ledyard Canoe Club',
+                  location: 'Hanover, NH',
+                  details: 'Outdoor Rec | Flatwater Leader'
                 }
               ]}
               experiences={[
                 {
-                  logo: require('./media/dali.png'),
+                  // logo: require('./media/dali.png'),
                   workplace: 'DALI Lab',
                   location: 'Hanover, NH',
                   position: 'Software Engineer (Dev II)',
@@ -74,13 +89,21 @@ function App() {
                   description: '- Software engineer on projects like ITC Wireless Tool and Whiteboard Planning app.'
                 },
                 {
-                  logo: require('./media/kll.png'),
+                  // logo: require('./media/kll.png'),
                   workplace: 'Kathmandu Living Labs',
                   location: 'Kathmandu, Nepal',
                   position: 'Software Engineer (iOS Developer)',
                   timeframe: 'June 2019 - August 2019',
                   description: '- Created an app with a team of developers to facilitate parent-teacher communication at a local Nepali high school, developing the majority of the user interface and framework for the project’s iOS client.\n' +
                                '- Learned about the roles of software development, humanitarian engineering, and open data in Nepal.',
+                },
+                {
+                  workplace: 'Dartmouth Formula Racing',
+                  location: 'Hanover, NH',
+                  position: 'Engineer',
+                  timeframe: 'September, 2018 - Present',
+                  description: '- Helped to design and build the vehicle wiring harness for the 2019 competition vehicle.\n' +
+                               '- Designed and manufactured module to convert raw sensor signals to CAN messages using Altium Designer, SolidWorks, and C, simplifying the wiring harness and making it easier to add new sensors to the vehicle in the future.'
                 }
               ]}
               />

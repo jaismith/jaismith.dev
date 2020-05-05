@@ -38,14 +38,14 @@
     width: 50%;
 }
 
-@media (min-aspect-ratio: 1/1) {
+@media (min-aspect-ratio: 4/3) {
     .project-content.flipped {
         flex-direction: row-reverse;
         text-align: left;
     }
 }
 
-@media (max-aspect-ratio: 1/1) {
+@media (max-aspect-ratio: 4/3) {
     .project-content {
         flex-direction: column;
         text-align: left;
