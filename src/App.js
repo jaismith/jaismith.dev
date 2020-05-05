@@ -21,7 +21,7 @@ function App() {
           <Route path='/projects'>
             <div className="app-projects">
               <Project 
-                name='ITC Wireless Tool'
+                name='Dartmouth WiFi Reporting'
                 org='DALI Lab'
                 date='Winter 2020'
                 blurb='Dartmouth College is currently undergoing a multi-million dollar campus-wide upgrade to WiFi infrastructure. In order to prioritize upcoming building upgrades in high-traffic areas, Dartmouth ITC hired the DALI Lab to build a WiFi reporting tool that taps into Dartmouth’s networking data to track issues and overloaded access points. This project is in the final stages of development and is on track for a public launch in Spring 2020.'
