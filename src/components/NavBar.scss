@@ -1,11 +1,11 @@
 .nav {
-  position: -webkit-sticky;
-  position: sticky;
+  position: fixed;
+  width: calc(100% - 3rem);
   top: 0;
   overflow: hidden;
   z-index: 1;
   background-color: white;
-  padding: 0.9rem 1.5rem 1rem 1.5rem;
+  padding: 0.9rem 1.5rem 1.1rem 1.5rem;
 
   display: flex;
   justify-content: flex-end;
