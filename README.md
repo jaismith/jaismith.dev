@@ -1,2 +1,0 @@
-# jaismith.dev
-Personal Site
