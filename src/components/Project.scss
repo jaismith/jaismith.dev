@@ -24,15 +24,9 @@
 .project-content {
     margin-top: 5%;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     text-align: right;
-    
-    &.flipped {
-        flex-direction: row-reverse;
-        text-align: left;
-    }
 }
 
 .project-content-blurb {
@@ -41,5 +35,30 @@
 }
 
 .project-content-showcase {
-    width: 50vw;
+    width: 50%;
+}
+
+@media (min-aspect-ratio: 1/1) {
+    .project-content.flipped {
+        flex-direction: row-reverse;
+        text-align: left;
+    }
+}
+
+@media (max-aspect-ratio: 1/1) {
+    .project-content {
+        flex-direction: column;
+        text-align: left;
+        align-items: stretch;
+    }
+
+    .project-content-showcase {
+        align-self: center;
+        width: 75%;
+    }
+
+    .project-content-blurb {
+        padding-top: 30px;
+        width: 100%;
+    }
 }

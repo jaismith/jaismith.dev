@@ -40,10 +40,10 @@ const Resume = (props) => (
       </div>
       {props.experiences.map((experience) => (
         <div key={shortid.generate()} className="resume-experience">
-          <img 
+          {/* <img 
             className="resume-experience-logo"
             alt=""
-            src={experience.logo} />
+            src={experience.logo} /> */}
           <div className="resume-experience-header">
             <b>{experience.workplace}</b>, <i>{experience.location}</i>
           </div>

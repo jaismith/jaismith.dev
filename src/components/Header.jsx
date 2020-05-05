@@ -1,15 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
-  NavLink, withRouter
-} from 'react-router-dom';
-import './Header.scss';
-import {
   ResponsiveContainer, AreaChart, Area, ReferenceDot, XAxis, Label
 } from 'recharts';
 import { connect } from 'react-redux';
 import CustomLabel from './CustomLabel';
 import { getActivity } from '../actions';
+import './Header.scss';
 
 import profile from '../media/profile.jpeg';
 
@@ -91,21 +88,6 @@ class Header extends PureComponent {
             </div>
           </div>
         </div>
-        <div className="header-nav">
-          <div className="header-active-highlight" />
-          <NavLink 
-            className="header-nav-item"
-            activeClassName="selected"
-            to='/projects'>
-            Projects
-          </NavLink>
-          <NavLink
-            className="header-nav-item"
-            activeClassName="selected"
-            to='/resume'>
-            Resume
-          </NavLink>
-        </div>
       </div>
     );
   }
@@ -123,4 +105,4 @@ const mapDispatchToProps = {
   getActivity,
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

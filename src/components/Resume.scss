@@ -5,7 +5,7 @@
   max-width: 1300px;
   margin: auto;
   text-align: left;
-  padding: 5%;
+  padding: 6vh 0 6vh 0;
 }
 
 .resume-sidebar {
@@ -32,14 +32,13 @@
   :nth-child(n + 3) {
     padding-top: 2.5px;
     margin-top: 2.5px;
-    border-top-style: solid;
-    border-top-width: 1px;
-    border-top-color: lightgrey;
+    // border-top: 1px solid lightgrey;
   }
 }
 
 .resume-organizations {
   padding-bottom: 20px;
+  min-width: 225px;
 
   :nth-child(n + 2) {
     padding-bottom: 2px;
@@ -48,13 +47,12 @@
   :nth-child(n + 3) {
     padding-top: 2.5px;
     margin-top: 2.5px;
-    border-top-style: solid;
-    border-top-width: 1px;
-    border-top-color: lightgrey;
+    // border-top: 1px solid lightgrey;
   }
 }
 
 .resume-experiences {
+  min-width: 400px;
   flex: 1 0 4;
   display: flex;
   flex-direction: column;
@@ -77,8 +75,9 @@
   padding: 20px 0 10px 0;
 }
 
-.resume-experience-title {
+.resume-experience-header {
   font-size: 14pt;
+  padding-top: 20px;
 }
 
 .resume-experience-summary {

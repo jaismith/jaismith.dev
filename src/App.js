@@ -5,6 +5,7 @@ import {
   Route, Switch, Redirect,
 } from 'react-router-dom';
 
+import NavBar from './components/NavBar';
 import Header from './components/Header';
 import Project from './components/Project';
 import Footer from './components/Footer';
@@ -14,6 +15,7 @@ function App() {
   return (
     <Router>
       <div className="app">
+        <NavBar />
         <Header />
         <Switch>
           <Route path='/projects'>
@@ -69,7 +71,7 @@ function App() {
                   location: 'Hanover, NH',
                   position: 'Software Engineer (Dev II)',
                   timeframe: 'January, 2019 - Present',
-                  description: 'Software engineer on projects like ITC Wireless Tool and Whiteboard Planning app.'
+                  description: '- Software engineer on projects like ITC Wireless Tool and Whiteboard Planning app.'
                 },
                 {
                   logo: require('./media/kll.png'),

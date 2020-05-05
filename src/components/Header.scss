@@ -29,6 +29,7 @@
 
 .header-pic {
     height: 20vh;
+    min-height: 150px;
     border-radius: 50%;
 }
 
@@ -46,27 +47,6 @@
     align-items: center;
 
     padding: 2.5em;
-}
-
-.header-nav {
-    position: absolute;
-    top: 2.5vh;
-    right: calc(2.5vh + 1em);
-    width: fit-content;
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
-}
-
-.header-nav-item {
-    text-decoration: none;
-    color: grey;
-    font-size: 15pt;
-    padding-left: 1em;
-
-    &.selected {
-        text-decoration: underline;
-    }
 }
 
 .header-title {

@@ -1,0 +1,21 @@
+.nav {
+  position: absolute;
+  top: 2.5vh;
+  right: calc(2.5vh + 1em);
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: grey;
+  font-size: 15pt;
+  padding-left: 1em;
+
+  &.selected {
+      text-decoration: underline;
+  }
+}

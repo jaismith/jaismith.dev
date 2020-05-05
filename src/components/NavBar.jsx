@@ -1,0 +1,24 @@
+import React from 'react';
+import {
+  NavLink, withRouter
+} from 'react-router-dom';
+import './NavBar.scss';
+
+const NavBar = (props) => (
+  <div className="nav">
+    <NavLink 
+      className="nav-item"
+      activeClassName="selected"
+      to='/projects'>
+      Projects
+    </NavLink>
+    <NavLink
+      className="nav-item"
+      activeClassName="selected"
+      to='/resume'>
+      Resume
+    </NavLink>
+  </div>
+);
+
+export default withRouter(NavBar);
