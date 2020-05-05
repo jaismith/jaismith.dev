@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { SocialIcon } from 'react-social-icons';
+import shortid from 'shortid';
 import './Footer.scss';
 
 const Footer = (props) => (
@@ -10,7 +11,8 @@ const Footer = (props) => (
     </div>
     <div className="footer-socials">
       {props.socialMedia.map((link) => (
-        <SocialIcon 
+        <SocialIcon
+          key={shortid.generate()}
           url={link} 
           bgColor='black'
           fgColor='white'

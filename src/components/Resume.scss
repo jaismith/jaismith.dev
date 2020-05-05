@@ -1,0 +1,86 @@
+.resume {
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+  max-width: 1300px;
+  margin: auto;
+  text-align: left;
+  padding: 5%;
+}
+
+.resume-sidebar {
+  flex: 0 0 1;
+  display: flex;
+  flex-direction: column;
+  color: grey;
+}
+
+.resume-sidebar-header {
+  font-weight: bold;
+  font-size: 14pt;
+  line-height: 14pt;
+  padding-bottom: 15px;
+}
+
+.resume-education {
+  padding-bottom: 20px;
+
+  :nth-child(n + 2) {
+    padding-bottom: 2px;
+  }
+
+  :nth-child(n + 3) {
+    padding-top: 2.5px;
+    margin-top: 2.5px;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: lightgrey;
+  }
+}
+
+.resume-organizations {
+  padding-bottom: 20px;
+
+  :nth-child(n + 2) {
+    padding-bottom: 2px;
+  }
+
+  :nth-child(n + 3) {
+    padding-top: 2.5px;
+    margin-top: 2.5px;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: lightgrey;
+  }
+}
+
+.resume-experiences {
+  flex: 1 0 4;
+  display: flex;
+  flex-direction: column;
+  padding-left: 5vw;
+}
+
+.resume-experiences-header {
+  font-size: 24pt;
+  line-height: 24px;
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+
+.resume-experience {
+  border-bottom: 1px solid lightgrey;
+}
+
+.resume-experience-logo {
+  height: 75px;
+  padding: 20px 0 10px 0;
+}
+
+.resume-experience-title {
+  font-size: 14pt;
+}
+
+.resume-experience-summary {
+  color: grey;
+}

@@ -19,7 +19,7 @@ export function getActivity() {
     const utcTime = new Date(localTime - (localTime.getTimezoneOffset() * 60000));
 
     // request github constribution data
-    axios.get(`${GITHUB_URL}?to=${utcTime.toISOString().split('T')[0]}`)
+    axios.get(`${GITHUB_URL}`)
       .then((res) => {
           // set reference date (20 days ago)
           var ref = utcTime;
@@ -35,7 +35,7 @@ export function getActivity() {
             let date = new Date(html(this).attr('data-date'));
 
             // add to activity, if since ref
-            if (date > ref) {
+            if (date > ref && date <= localTime) {
               var datapoint = {
                 x: date.getDate() - ref.getDate(),
                 y: Number(html(this).attr('data-count')) + 5,

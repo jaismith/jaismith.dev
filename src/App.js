@@ -8,6 +8,7 @@ import {
 import Header from './components/Header';
 import Project from './components/Project';
 import Footer from './components/Footer';
+import Resume from './components/Resume';
 
 function App() {
   return (
@@ -41,7 +42,46 @@ function App() {
             </div>
           </Route>
           <Route path='/resume'>
-            <p>this is my resume</p>
+            <Resume
+              education={[
+                {
+                  name: 'Dartmouth College',
+                  location: 'Hanover, NH',
+                  details: 'Bachelor of Computer Science (2018-2022)'
+                }
+              ]} 
+              organizations={[
+                {
+                  name: 'Give Essential',
+                  location: 'USA',
+                  details: 'Humanitarian Aid, Developer'
+                },
+                {
+                  name: 'HackDartmouth',
+                  location: 'Hanover, NH',
+                  details: 'Developer, Organizer'
+                }
+              ]}
+              experiences={[
+                {
+                  logo: require('./media/dali.png'),
+                  workplace: 'DALI Lab',
+                  location: 'Hanover, NH',
+                  position: 'Software Engineer (Dev II)',
+                  timeframe: 'January, 2019 - Present',
+                  description: 'Software engineer on projects like ITC Wireless Tool and Whiteboard Planning app.'
+                },
+                {
+                  logo: require('./media/kll.png'),
+                  workplace: 'Kathmandu Living Labs',
+                  location: 'Kathmandu, Nepal',
+                  position: 'Software Engineer (iOS Developer)',
+                  timeframe: 'June 2019 - August 2019',
+                  description: '- Created an app with a team of developers to facilitate parent-teacher communication at a local Nepali high school, developing the majority of the user interface and framework for the project’s iOS client.\n' +
+                               '- Learned about the roles of software development, humanitarian engineering, and open data in Nepal.',
+                }
+              ]}
+              />
           </Route>
           <Route path='/'>
             <Redirect to='/projects' />
