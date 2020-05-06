@@ -8,7 +8,7 @@ import CustomLabel from './CustomLabel';
 import { getActivity } from '../actions';
 import './Header.scss';
 
-import profile from '../media/profile.jpeg';
+import profile from '../media/profile-web.jpeg';
 
 class Header extends PureComponent { 
   constructor(_props) {

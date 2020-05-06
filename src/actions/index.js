@@ -2,7 +2,7 @@ import axios from 'axios';
 import cheerio from 'cheerio';
 
 // this uses a proxy to bypass cors, may be unreliable
-const GITHUB_URL = 'https://cors-anywhere.herokuapp.com/http://github.com/users/jaismith/contributions';
+const GITHUB_URL = 'https://cors-anywhere.herokuapp.com/github.com:443/users/jaismith/contributions';
 
 export const ActionTypes = {
   GET_ACTIVITY: 'GET_ACTIVITY',
@@ -19,7 +19,7 @@ export function getActivity() {
     const utcTime = new Date(localTime - (localTime.getTimezoneOffset() * 60000));
 
     // request github constribution data
-    axios.get(`${GITHUB_URL}`)
+    axios.get(`${GITHUB_URL}`, { headers: { 'Accept': '*/*' }})
       .then((res) => {
           // set reference date (20 days ago)
           var ref = utcTime;

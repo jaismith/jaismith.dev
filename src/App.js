@@ -26,7 +26,7 @@ function App() {
                 date='Winter 2020'
                 blurb='Dartmouth College is currently undergoing a multi-million dollar campus-wide upgrade to WiFi infrastructure. In order to prioritize upcoming building upgrades in high-traffic areas, Dartmouth ITC hired the DALI Lab to build a WiFi reporting tool that taps into Dartmouth’s networking data to track issues and overloaded access points. This project is in the final stages of development and is on track for a public launch in Spring 2020.'
                 img={{
-                  src: require('./media/wirelesstool.png'),
+                  src: require('./media/wirelesstool-web.png'),
                   alt: 'Wireless Tool web app on Macbook Pro'
                 }}
               />
@@ -36,7 +36,7 @@ function App() {
                 date='Fall 2019'
                 blurb='A wearable rack to facilitate easy deployment and collection of temporary electric fencing. Management-Intensive Rotational Grazing (which uses the aforementioned fencing) is a rapidly growing practice among organic farmers in the U.S., but no products currently exist on the market to facilitate its use. This product is U.S. Patent Pending as of November 2019, expiring November 2020.'
                 img={{
-                  src: require('./media/fenceable.png'),
+                  src: require('./media/fenceable-web.png'),
                   alt: 'Fenceable product image on white background'
                 }}
                 flipped
@@ -47,7 +47,7 @@ function App() {
                 date='Summer 2019'
                 blurb='Produced in partnership with a local Nepali school in Kathmandu, Vidya aims to increase parent involvement in student learning, something that has been historically difficult in the area. The app allows teachers to post positive feedback on student performance in a social media feed, alongside school announcements and homework assignments, as well as facilitating one-on-one instant messaging between teachers and parents. Vidya was launched in early 2020.'
                 img={{
-                  src: require('./media/kv.png'),
+                  src: require('./media/kv-web.png'),
                   alt: 'Product images of Vidya App on iPhone'
                 }}
               />
