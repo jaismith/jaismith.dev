@@ -45,7 +45,7 @@ function App() {
                 name='Vidya'
                 org='Kathmandu Living Labs'
                 date='Summer 2019'
-                blurb='Produced in partnership with a local Nepali school in Kathmandu, Vidya aims to increase parent involvement in student learning, something that has been historically difficult in the area. The app allows teachers to post positive feedback on student performance in a social media feed, alongside school announcements and homework assignments, as well as facilitating one-on-one instant messaging between teachers and parents. Vidya was launched in early 2020.'
+                blurb='Produced in partnership with a local Nepali school in Kathmandu, Vidya aims to increase parent involvement in student learning, something that has been historically difficult in the area. The app allows teachers to post positive feedback on student performance in a social media feed, alongside school announcements and homework assignments, as well as facilitates one-on-one instant messaging between teachers and parents. Vidya was launched in early 2020.'
                 img={{
                   src: require('./media/kv-web.png'),
                   alt: 'Product images of Vidya App on iPhone'
