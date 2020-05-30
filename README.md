@@ -1,6 +1,6 @@
 # Personal Portfolio Site
 
-_Hosted at [jaismith.dev](jaismith.dev) via [Github Pages](https://pages.github.com/)._
+_Hosted at [jaismith.dev](https://jaismith.dev) via [Github Pages](https://pages.github.com/)._
 
 ## Stack
 
