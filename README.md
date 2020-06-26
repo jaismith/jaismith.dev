@@ -19,10 +19,12 @@ Notable packages:
 - [react-social-icons](https://www.npmjs.com/package/react-social-icons)
 - [recharts](https://www.npmjs.com/package/recharts)
 
-## Github Activity
+## Features
+
+### Github Activity
 
 Github activity is pulled directly from the github profile page via `axios`, parsed by `cheerio`, and displayed in a `recharts` chart.
 
-## Projects & Resume
+### Projects & Resume
 
 Projects and Resume data are loaded from js objects in `App` and rendered dynamically.
