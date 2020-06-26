@@ -2,6 +2,8 @@
 
 _Hosted at [jaismith.dev](https://jaismith.dev) via [Github Pages](https://pages.github.com/)._
 
+**Note**: Github Pages is not properly configured to host single page web apps by default, so a workaround is employed in this project (see [here](https://github.com/rafrex/spa-github-pages)).
+
 ## Stack
 
 Built entirely in [React](https://reactjs.org/).
