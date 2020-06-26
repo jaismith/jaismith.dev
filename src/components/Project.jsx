@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Project.scss'
+import './stylesheets/Project.scss'
 
 const Project = (props) => (
   <div className={props.flipped ? 'project flipped' : 'project'}>

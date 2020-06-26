@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import ReactMarkdown from 'react-markdown';
-import './Resume.scss';
+import './stylesheets/Resume.scss';
 
 const Resume = (props) => (
   <div className="resume">

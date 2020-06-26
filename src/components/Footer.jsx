@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { SocialIcon } from 'react-social-icons';
 import shortid from 'shortid';
-import './Footer.scss';
+import './stylesheets/Footer.scss';
 
 const Footer = (props) => (
   <div className="footer">

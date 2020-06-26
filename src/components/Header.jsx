@@ -6,7 +6,7 @@ import {
 import { connect } from 'react-redux';
 import CustomLabel from './CustomLabel';
 import { getActivity } from '../actions';
-import './Header.scss';
+import './stylesheets/Header.scss';
 
 import profile from '../media/profile-web.jpeg';
 
