@@ -117,9 +117,9 @@ function App() {
                   location: 'Hanover, NH',
                   position: 'Contestant, Organizer, Lead Developer',
                   timeframe: 'April 2019 - Present',
-                  description: 'Developed an offline instant messaging app as a contestant in 2019 using Bluetooth/Wi-Fi Direct mesh technology to send end-to-end encrypted messages over a decentralized network of nearby smartphones (awarded over $1k by Facebook).\n' +
-                               'Lead developer of club website, our public facing portal for sponsors and hundreds of applicants nationwide.\n' +
-                               'Responsible for holding workshops on campus to teach beginner developers languages like JavaScript, HTML, and CSS.',
+                  description: '- Developed an offline instant messaging app as a contestant in 2019 using Bluetooth/Wi-Fi Direct mesh technology to send end-to-end encrypted messages over a decentralized network of nearby smartphones (awarded over $1k by Facebook).\n' +
+                               '- Lead developer of club website, our public facing portal for sponsors and hundreds of applicants nationwide.\n' +
+                               '- Responsible for holding workshops on campus to teach beginner developers languages like JavaScript, HTML, and CSS.',
                 },
               ]}
               />
