@@ -14,3 +14,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.app {
+  text-align: center;
+  min-width: 750px;
+
+  &.mobile {
+    min-width: 0;
+  }
+}

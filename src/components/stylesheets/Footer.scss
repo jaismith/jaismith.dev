@@ -1,7 +1,6 @@
 .footer {
   background-color: black;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -15,6 +14,19 @@
 
   a:hover {
     text-decoration: underline;
+  }
+
+  &.mobile {
+    flex-direction: column;
+    height: fit-content;
+    font-size: 1.25em;
+    white-space: nowrap;
+    padding: 1em 0 1em 0;
+
+    .footer-socials {
+      margin-top: .5em;
+      flex: 0 0 100%;
+    }
   }
 }
 
@@ -42,4 +54,16 @@
   flex: 0 0 30%;
   text-align: right;
   padding-right: 20px;
+}
+
+.footer-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 1050px) {
+  .footer-credits span {
+    display: none;
+  }
 }

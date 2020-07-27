@@ -1,70 +1,89 @@
 .header {
-    position: relative;
-    top: 0;
-    height: 75vh;
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-bottom-color: lightgrey;
+  position: relative;
+  top: 0;
+  height: 75vh;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: lightgrey;
+
+  &.mobile {
+    height: 90vh;
+    margin-bottom: 5vh;
+
+    .header-chart {
+      width: 97.5%;
+    }
+
+    .header-box {
+      flex-direction: column;
+      -ms-transform: translate(-50%, -60%);
+      transform: translate(-50%, -60%);
+    }
+    
+    .header-title {
+      padding: 40px 0 0 0;
+      text-align: center;
+    }
+  }
 }
 
 .header-chart {
-    position: absolute;
-    z-index: 0;
-    top: 65%;
-    width: 80%;
-    height: calc(35% + 50px);
-    display: flex;
+  position: absolute;
+  z-index: 0;
+  top: 65%;
+  width: 80%;
+  height: calc(35% + 50px);
+  display: flex;
 }
 
 .header-chart-refdot {
-    transition: 1s;
+  transition: 1s;
 
-    &.hidden {
-        -ms-transform: translateY(15%);
-        transform: translateY(15%);
-        opacity: 0;
-    }
+  &.hidden {
+    -ms-transform: translateY(15%);
+    transform: translateY(15%);
+    opacity: 0;
+  }
 }
 
 .header-pic {
-    height: 20vh;
-    min-height: 150px;
-    border-radius: 50%;
+  height: 20vh;
+  min-height: 150px;
+  border-radius: 50%;
 }
 
 .header-box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    width: fit-content;
-    margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: fit-content;
+  margin: auto;
 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    padding: 2.5em;
+  padding: 2.5em;
 }
 
 .header-title {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding-left: 40px;
 }
 
 .header-title-main {
-    font-weight: bolder;
-    line-height: 36pt;
-    font-size: 36pt;
-    margin: 0 0 7.5px 0;
+  font-weight: bolder;
+  line-height: 36pt;
+  font-size: 36pt;
+  margin: 0 0 7.5px 0;
 }
 
 .header-title-sub {
-    font-weight: lighter;
-    line-height: 26pt;
-    font-size: 18pt;
-    margin: 0px;
+  font-weight: lighter;
+  line-height: 26pt;
+  font-size: 18pt;
+  margin: 0px;
 }

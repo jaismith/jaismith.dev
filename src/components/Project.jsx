@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { isMobile } from 'react-device-detect';
 import './stylesheets/Project.scss'
 
 const Project = (props) => (
-  <div className={props.flipped ? 'project flipped' : 'project'}>
+  <div className={`project ${props.flipped ? 'flipped' : ''} ${isMobile ? 'mobile' : ''}`}>
     <div className="project-title">
       <div className="project-title-main">
         {props.name}

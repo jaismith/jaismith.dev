@@ -4,6 +4,7 @@ import {
   ResponsiveContainer, AreaChart, Area, ReferenceDot, XAxis, Label
 } from 'recharts';
 import { connect } from 'react-redux';
+import { isMobile } from 'react-device-detect';
 import CustomLabel from './CustomLabel';
 import { getActivity } from '../actions';
 import './stylesheets/Header.scss';
@@ -21,7 +22,7 @@ class Header extends PureComponent {
 
   render() {
     return (
-      <div className="header">
+      <div className={`header ${isMobile ? 'mobile' : ''}`}>
         <div className="header-chart">
           <ResponsiveContainer>
             <AreaChart
@@ -29,7 +30,7 @@ class Header extends PureComponent {
               baseValue={0.12}
               margin={{
                 top: 20,
-                right: 170,
+                right: isMobile ? 140 : 170,
                 bottom: 10,
                 left: 0,
               }}
@@ -53,15 +54,20 @@ class Header extends PureComponent {
               >
                 <Label
                   position={'right'}
-                  content={<CustomLabel lines={this.props.activity[0].y !== 0 ?
-                    [
-                      `${this.props.activity.reduce((sum, val) => sum + (val.y - 5), 0)} contributions`,
-                      `since ${this.props.activity[4].name}`
-                    ] :
-                    [
-                      'Loading activity...'
-                    ]
-                  } />}
+                  content={
+                    <CustomLabel 
+                      lines={this.props.activity[0].y !== 0 ?
+                        [
+                          `${this.props.activity.reduce((sum, val) => sum + (val.y - 5), 0)} contributions`,
+                          `since ${this.props.activity[4].name}`
+                        ] :
+                        [
+                          'Loading activity...'
+                        ]
+                      }
+                      mobile={isMobile}
+                    />
+                  }
                 />
               </ReferenceDot>
               <XAxis 
@@ -98,7 +104,7 @@ Header.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  activity: state.activity.history,
+  activity: isMobile ? state.activity.history.slice(5) : state.activity.history,
 })
 
 const mapDispatchToProps = {

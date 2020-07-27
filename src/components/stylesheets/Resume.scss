@@ -1,11 +1,39 @@
 .resume {
   display: flex;
-  flex-direction: row;
   width: 60%;
   max-width: 1300px;
   margin: auto;
   text-align: left;
   padding: calc(3vw + 5vh) 0 calc(3vw + 5vh) 0;
+
+  &.mobile {
+    width: 90%;
+    flex-direction: column;
+
+    .resume-sidebar {
+      width: 100%;
+      text-align: center;
+    }
+
+    .resume-sidebar-header {
+      font-size: 18pt;
+      color: black;
+    }
+
+    .resume-organizations {
+      min-width: 0;
+    }
+
+    .resume-experiences {
+      min-width: 0;
+      padding-left: 0;
+    }
+    
+    .resume-experiences-header {
+      font-size: 18pt;
+      padding-bottom: 0;
+    }
+  }
 }
 
 .resume-sidebar {
@@ -32,7 +60,6 @@
   :nth-child(n + 3) {
     padding-top: 2.5px;
     margin-top: 2.5px;
-    // border-top: 1px solid lightgrey;
   }
 }
 
@@ -47,7 +74,6 @@
   :nth-child(n + 3) {
     padding-top: 2.5px;
     margin-top: 2.5px;
-    // border-top: 1px solid lightgrey;
   }
 }
 
