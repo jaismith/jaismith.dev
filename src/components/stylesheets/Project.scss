@@ -1,5 +1,16 @@
 .project {
   padding: 5% 7.5% 5% 7.5%;
+  transition: transform 0.6s, opacity 0.6s;
+
+  &:not(:first-child) {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+
+  &.visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
 
   &.flipped {
     background-color: #f8f8f8;

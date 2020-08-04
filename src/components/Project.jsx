@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { isMobile } from 'react-device-detect';
+import OnVisible from 'react-on-visible';
 import './stylesheets/Project.scss'
 
 const Project = (props) => (
-  <div className={`project ${props.flipped ? 'flipped' : ''} ${isMobile ? 'mobile' : ''}`}>
+  <OnVisible
+    className={`project ${props.flipped ? 'flipped' : ''} ${isMobile ? 'mobile' : ''}`}
+    percent={20}
+  >
     <div className="project-title">
       <div className="project-title-main">
         {props.name}
@@ -24,7 +28,7 @@ const Project = (props) => (
         {props.blurb}
       </div>
     </div>
-  </div>
+  </OnVisible>
 );
 
 Project.propTypes = {

@@ -34,6 +34,14 @@
   width: 80%;
   height: calc(35% + 50px);
   display: flex;
+  transform: translateY(50px);
+  opacity: 0;
+  transition: transform 0.6s 0.2s, opacity 0.6s 0.2s;
+
+  &.visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .header-chart-refdot {
@@ -60,10 +68,8 @@
   transform: translate(-50%, -50%);
   width: fit-content;
   margin: auto;
-
   display: flex;
   align-items: center;
-
   padding: 2.5em;
 }
 

@@ -94,6 +94,17 @@
 
 .resume-experience {
   border-bottom: 1px solid lightgrey;
+  transition: transform 0.6s, opacity 0.6s;
+  
+  &:nth-child(n + 3) {
+    transform: translateY(25px);
+    opacity: 0;
+  }
+
+  &.visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .resume-experience-logo {

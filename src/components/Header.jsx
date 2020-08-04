@@ -5,6 +5,7 @@ import {
 } from 'recharts';
 import { connect } from 'react-redux';
 import { isMobile } from 'react-device-detect';
+import OnVisible from 'react-on-visible';
 import CustomLabel from './CustomLabel';
 import { getActivity } from '../actions';
 import './stylesheets/Header.scss';
@@ -23,7 +24,7 @@ class Header extends PureComponent {
   render() {
     return (
       <div className={`header ${isMobile ? 'mobile' : ''}`}>
-        <div className="header-chart">
+        <OnVisible className="header-chart">
           <ResponsiveContainer>
             <AreaChart
               data={this.props.activity}
@@ -77,7 +78,7 @@ class Header extends PureComponent {
               />
             </AreaChart>
           </ResponsiveContainer>
-        </div>
+        </OnVisible>
         <div className="header-box">
           <img
             className="header-pic"

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import ReactMarkdown from 'react-markdown';
 import { isMobile } from 'react-device-detect'
+import OnVisible from 'react-on-visible';
 import './stylesheets/Resume.scss';
 
 const Resume = (props) => (
@@ -40,11 +41,11 @@ const Resume = (props) => (
         Experiences
       </div>
       {props.experiences.map((experience) => (
-        <div key={shortid.generate()} className="resume-experience">
-          {/* <img 
-            className="resume-experience-logo"
-            alt=""
-            src={experience.logo} /> */}
+        <OnVisible
+          key={shortid.generate()}
+          className="resume-experience"
+          percent={20}
+        >
           <div className="resume-experience-header">
             <b>{experience.workplace}</b>, <i>{experience.location}</i>
           </div>
@@ -54,7 +55,7 @@ const Resume = (props) => (
           <div className="resume-experience-description">
             <ReactMarkdown>{experience.description}</ReactMarkdown>
           </div>
-        </div>
+        </OnVisible>
       ))}
     </div>
   </div>
