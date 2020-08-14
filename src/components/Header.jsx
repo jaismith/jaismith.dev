@@ -45,13 +45,13 @@ class Header extends PureComponent {
               <Area
                 type='basis'
                 dataKey='y'
-                stroke={this.props.activity[0].y === 0 ? 'transparent' : '#0054B4'}
+                stroke={this.props.activity[0].y === 0 ? 'transparent' : this.props.darkMode ? 'rgb(96, 182, 255)' : '#0054B4'}
                 fill='url(#grad)' />
               <ReferenceDot
-                className={`header-chart-refdot ${this.props.activity[0].y === 0 ? 'hidden' : null}`}
+                className={`header-chart-refdot ${this.props.activity[0].y === 0 ? 'hidden' : ''}`}
                 x={this.props.activity.length - 1}
                 y={this.props.activity[this.props.activity.length - 1].y}
-                r={7.5} fill={'#0054B4'} stroke={'none'}
+                r={7.5} fill={this.props.darkMode ? 'rgb(96, 182, 255)' : '#0054B4'} stroke={'none'}
               >
                 <Label
                   position={'right'}
@@ -67,6 +67,7 @@ class Header extends PureComponent {
                         ]
                       }
                       mobile={isMobile}
+                      darkMode={this.props.darkMode}
                     />
                   }
                 />

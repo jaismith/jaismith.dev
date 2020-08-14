@@ -19,7 +19,7 @@
       -ms-transform: translate(-50%, -60%);
       transform: translate(-50%, -60%);
     }
-    
+
     .header-title {
       padding: 40px 0 0 0;
       text-align: center;
@@ -51,6 +51,10 @@
     -ms-transform: translateY(15%);
     transform: translateY(15%);
     opacity: 0;
+  }
+
+  &.dark {
+    color: white;
   }
 }
 

@@ -13,10 +13,10 @@ import Footer from './components/Footer';
 import Resume from './components/Resume';
 
 function App() {
+  let location = useLocation();
+
   // initialize google analytics
   ReactGA.initialize('UA-145221220-1');
-
-  let location = useLocation();
 
   useEffect(
     () => {
@@ -25,15 +25,22 @@ function App() {
     },
     [location]
   );
+  
+  // detect dark-mode page
+  let darkMode = ['/resume'].includes(location.pathname);
 
   return (
-    <div className={`app ${isMobile ? 'mobile' : ''}`}>
-      <NavBar />
-      <Header />
+    <div className={`app ${isMobile ? 'mobile' : ''} ${darkMode ? 'dark' : 'light'}`}>
+      <NavBar
+        darkMode={darkMode}
+      />
+      <Header
+        darkMode={darkMode}
+      />
       <Switch>
         <Route path='/projects'>
           <div className="app-projects">
-            <Project 
+            <Project
               name='Dartmouth WiFi'
               org='DALI Lab'
               date='Winter 2020'
@@ -43,7 +50,7 @@ function App() {
                 alt: 'Wireless Tool web app on Macbook Pro'
               }}
             />
-            <Project 
+            <Project
               name='Fenceable'
               org='ENGS 021'
               date='Fall 2019'

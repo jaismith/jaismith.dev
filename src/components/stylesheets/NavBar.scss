@@ -4,11 +4,20 @@
   top: 0;
   overflow: hidden;
   z-index: 1;
-  background-color: white;
   padding: 0.9rem 1.5rem 1.1rem 1.5rem;
-
   display: flex;
   justify-content: flex-end;
+  transition: background 0.3s;
+
+  &.dark {
+    background: #181a1b;
+    color: rgb(186, 181, 171);
+  }
+
+  &.light {
+    background: white;
+    color: black;
+  }
 }
 
 .nav-item {

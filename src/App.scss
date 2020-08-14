@@ -18,8 +18,19 @@ code {
 .app {
   text-align: center;
   min-width: 750px;
+  transition: background 0.3s;
 
   &.mobile {
     min-width: 0;
+  }
+
+  &.light {
+    background: white;
+    color: black;
+  }
+
+  &.dark {
+    background: #181a1b;
+    color: white;
   }
 }
