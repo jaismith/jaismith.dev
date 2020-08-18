@@ -29,6 +29,13 @@ function App() {
   // detect dark-mode page
   let darkMode = ['/resume'].includes(location.pathname);
 
+  // set background
+  if (darkMode) {
+    document.body.classList.add('dark');
+  } else {
+    document.body.classList.remove('dark');
+  }
+
   return (
     <div className={`app ${isMobile ? 'mobile' : ''} ${darkMode ? 'dark' : 'light'}`}>
       <NavBar
