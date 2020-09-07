@@ -1,5 +1,6 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
+import moment from 'moment';
 
 // this uses a proxy to bypass cors, may be unreliable
 const GITHUB_URL = 'https://cors-anywhere.herokuapp.com/github.com:443/users/jaismith/contributions';
@@ -7,10 +8,6 @@ const GITHUB_URL = 'https://cors-anywhere.herokuapp.com/github.com:443/users/jai
 export const ActionTypes = {
   GET_ACTIVITY: 'GET_ACTIVITY',
 };
-
-// month names
-let months = ['January', 'February', 'March', 'April', 'May', 'June', 
-              'July', 'August', 'September', 'October', 'November'];
 
 export function getActivity() {
   return (dispatch) => {
@@ -42,8 +39,8 @@ export function getActivity() {
               };
 
               if ((activity.length + 1) % 5 === 0) {
-                datapoint.name = `${months[date.getMonth()]} ${date.getDate() + 1}`;
-              };
+                datapoint.name = `${moment(date).add(1, 'days').format('MMM Do')}`;
+              }
 
               activity.push(datapoint);
             }
