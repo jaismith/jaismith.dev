@@ -110,7 +110,7 @@ function App() {
               {
                 workplace: 'DALI Lab',
                 location: 'Hanover, NH',
-                position: 'Software Engineer (Dev II)',
+                position: 'Software Engineer (Mentor)',
                 timeframe: 'January 2019 - Present',
                 description: '- Led a team of engineers in creating a reporting system to trace Wi-Fi complaints to access-points within the Dartmouth network; aggregating data from thousands of users to guide an ongoing multi-million-dollar campus infrastructure upgrade.\n' +
                             '- Currently developing a highly customizable personal productivity web application using ReactJS and Cloud Firestore, targeting a private beta during Summer 2020 and set to be presented before investors later this year.',
