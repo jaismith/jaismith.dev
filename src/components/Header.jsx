@@ -11,6 +11,7 @@ import { getActivity } from '../actions';
 import './stylesheets/Header.scss';
 
 import profile from '../media/profile-web.jpeg';
+import profileWebp from '../media/profile-web.webp';
 
 class Header extends PureComponent { 
   constructor(_props) {
@@ -81,11 +82,11 @@ class Header extends PureComponent {
           </ResponsiveContainer>
         </OnVisible>
         <div className="header-box">
-          <img
-            className="header-pic"
-            src={profile}
-            alt="Self-Portrait"
-          />
+          <picture className="header-pic">
+            <source srcSet={profileWebp} type="image/webp" />
+            <source srcSet={profile} type="image/jpeg" />
+            <img src={profile} alt="Self-Portrait" />
+          </picture>
           <div className="header-title">
             <div className="header-title-main">
               Jai K. Smith

@@ -61,7 +61,12 @@
 .header-pic {
   height: 20vh;
   min-height: 150px;
-  border-radius: 50%;
+
+  img {
+    object-fit: contain;
+    height: 100%;
+    border-radius: 50%;
+  }
 }
 
 .header-box {

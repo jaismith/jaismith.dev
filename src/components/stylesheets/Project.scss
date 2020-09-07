@@ -61,6 +61,11 @@
 
 .project-content-showcase {
   width: 60%;
+
+  img {
+    object-fit: contain;
+    width: 100%;
+  }
 }
 
 @media (min-aspect-ratio: 4/3) {

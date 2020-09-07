@@ -19,11 +19,11 @@ const Project = (props) => (
       </div>
     </div>
     <div className={props.flipped ? 'project-content flipped' : 'project-content'}>
-      <img
-        src={props.img.src}
-        alt={props.img.alt}
-        className="project-content-showcase"
-      />
+      <picture className="project-content-showcase">
+        <source srcSet={props.img.src.webp} type="image/webp" />
+        <source srcSet={props.img.src.png} type="image/png" />
+        <img src={props.img.src.png} alt={props.img.alt} />
+      </picture>
       <div className="project-content-blurb">
         {props.blurb}
       </div>
