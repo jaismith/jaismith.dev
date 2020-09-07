@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/static/css/main.561f416e.chunk.css",
-    "main.js": "/static/js/main.1b2fae58.chunk.js",
+    "main.js": "/static/js/main.e5959752.chunk.js",
     "runtime-main.js": "/static/js/runtime-main.aa604ab4.js",
-    "static/js/2.37cb8e30.chunk.js": "/static/js/2.37cb8e30.chunk.js",
+    "static/js/2.6ec2ec90.chunk.js": "/static/js/2.6ec2ec90.chunk.js",
     "index.html": "/index.html",
-    "precache-manifest.2caa17dc68d4481af65fcbede3985a65.js": "/precache-manifest.2caa17dc68d4481af65fcbede3985a65.js",
+    "precache-manifest.fae5adabb4f7d7484bdfecb9d53c151a.js": "/precache-manifest.fae5adabb4f7d7484bdfecb9d53c151a.js",
     "service-worker.js": "/service-worker.js",
-    "static/js/2.37cb8e30.chunk.js.LICENSE.txt": "/static/js/2.37cb8e30.chunk.js.LICENSE.txt",
+    "static/js/2.6ec2ec90.chunk.js.LICENSE.txt": "/static/js/2.6ec2ec90.chunk.js.LICENSE.txt",
     "static/media/fenceable-web.png": "/static/media/fenceable-web.29de3435.png",
     "static/media/kv-web.png": "/static/media/kv-web.c0a5855a.png",
     "static/media/profile-web.jpeg": "/static/media/profile-web.02e5759d.jpeg",
@@ -15,8 +15,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.aa604ab4.js",
-    "static/js/2.37cb8e30.chunk.js",
+    "static/js/2.6ec2ec90.chunk.js",
     "static/css/main.561f416e.chunk.css",
-    "static/js/main.1b2fae58.chunk.js"
+    "static/js/main.e5959752.chunk.js"
   ]
 }
