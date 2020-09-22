@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { SocialIcon } from 'react-social-icons';
-import shortid from 'shortid';
 import { isMobile } from 'react-device-detect';
 import './stylesheets/Footer.scss';
 
@@ -9,7 +8,7 @@ const renderSocials = (socials) => (
   <div className="footer-socials">
     {socials.map((link) => (
       <SocialIcon
-        key={shortid.generate()}
+        key={link}
         url={link} 
         bgColor='black'
         fgColor='white'
