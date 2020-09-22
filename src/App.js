@@ -55,6 +55,17 @@ function App() {
           <Route path='/projects'>
             <div className="app-projects">
               <Project
+                name="Give Essential"
+                link="https://giveessential.org"
+                org="Give Essential"
+                date="Spring 2020 - Summer 2020"
+                blurb="An online peer-to-peer matching platform that connects essential workers to donors who have financial and household resources to share. Founded by a team of Dartmouth students during the COVID-19 pandemic, Give Essential has now facilitated over $1 million in in-kind donations from all 50 states, and includes over 200 volunteers. We aim to help over 50k families by the end of 2020."
+                img={{
+                  src: genOptSrc('./media/giveessential-web'),
+                  alt: 'Give Essential websites on Apple devices'
+                }}
+              />
+              <Project
                 name='Dartmouth WiFi'
                 org='DALI Lab'
                 date='Winter 2020'
@@ -63,6 +74,7 @@ function App() {
                   src: genOptSrc('./media/wirelesstool-web'),
                   alt: 'Wireless Tool web app on Macbook Pro'
                 }}
+                flipped
               />
               <Project
                 name='Fenceable'
@@ -73,7 +85,6 @@ function App() {
                   src: genOptSrc('./media/fenceable-web'),
                   alt: 'Fenceable product image on white background'
                 }}
-                flipped
               />
               <Project
                 name='Vidya'
@@ -84,6 +95,7 @@ function App() {
                   src: genOptSrc('./media/kv-web'),
                   alt: 'Product images of Vidya App on iPhone'
                 }}
+                flipped
               />
             </div>
           </Route>

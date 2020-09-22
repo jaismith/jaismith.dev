@@ -11,7 +11,12 @@ const Project = (props) => (
   >
     <div className="project-title">
       <div className="project-title-main">
-        {props.name}
+        {props.link
+          ? (
+            <a href={props.link}>
+              {props.name}
+            </a>
+          ) : props.name}
       </div>
       <div className="project-title-sub">
         <b>{props.org}</b><br />
@@ -33,6 +38,7 @@ const Project = (props) => (
 
 Project.propTypes = {
   name: PropTypes.string,
+  link: PropTypes.string,
   org: PropTypes.string,
   date: PropTypes.string,
   blurb: PropTypes.string,
@@ -42,6 +48,7 @@ Project.propTypes = {
 
 Project.defaultProps = {
   name: 'Project Name',
+  link: null,
   org: 'Organization',
   date: 'Season Year',
   blurb: 'What is this?',
