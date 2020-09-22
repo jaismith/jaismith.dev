@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import shortid from 'shortid';
 import ReactMarkdown from 'react-markdown';
 import { isMobile } from 'react-device-detect'
 import OnVisible from 'react-on-visible';
+import { generateKey } from '../helpers';
 import './stylesheets/Resume.scss';
 
 const Resume = (props) => (
@@ -14,7 +14,10 @@ const Resume = (props) => (
           Education
         </div>
         {props.education.map((institution) => (
-          <div key={shortid.generate()} className="resume-institution">
+          <div
+            key={generateKey([institution.name, institution.location])}
+            className="resume-institution"
+          >
             <div className="resume-sidebar-item">
               {institution.name}, <i>{institution.location}</i>
             </div>
@@ -27,7 +30,10 @@ const Resume = (props) => (
           Organizations
         </div>
         {props.organizations.map((organization) => (
-          <div key={shortid.generate()} className="resume-organization">
+          <div
+            key={generateKey([organization.name, organization.location])}
+            className="resume-organization"
+          >
             <div className="resume-sidebar-item">
               {organization.name}, <i>{organization.location}</i>
             </div>
@@ -42,7 +48,7 @@ const Resume = (props) => (
       </div>
       {props.experiences.map((experience) => (
         <OnVisible
-          key={shortid.generate()}
+          key={generateKey([experience.workplace, experience.location])}
           className="resume-experience"
           percent={20}
         >
