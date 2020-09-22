@@ -35,6 +35,21 @@
 .project-title {
   display: flex;
   justify-content: space-between;
+
+  a {
+    text-decoration: none;
+    color: black;
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+    display: inline-block;
+    line-height: 0.95;
+    border-color: transparent;
+    transition: border-bottom-color 0.15s;
+
+    &:hover {
+      border-bottom-color: black;
+    }
+  }
 }
 
 .project-title-main {

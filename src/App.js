@@ -56,9 +56,10 @@ function App() {
             <div className="app-projects">
               <Project
                 name="Give Essential"
+                link="https://giveessential.org"
                 org="Give Essential"
                 date="Spring 2020 - Summer 2020"
-                blurb="This is a blurb"
+                blurb="An online peer-to-peer matching platform that connects essential workers to donors who have financial and household resources to share. Founded by a team of Dartmouth students during the COVID-19 pandemic, Give Essential has now facilitated over $1 million in in-kind donations from all 50 states, and includes over 200 volunteers. We aim to help over 50k families by the end of 2020."
                 img={{
                   src: genOptSrc('./media/giveessential-web'),
                   alt: 'Give Essential websites on Apple devices'
