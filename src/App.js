@@ -55,6 +55,16 @@ function App() {
           <Route path='/projects'>
             <div className="app-projects">
               <Project
+                name="Give Essential"
+                org="Give Essential"
+                date="Spring 2020 - Summer 2020"
+                blurb="This is a blurb"
+                img={{
+                  src: genOptSrc('./media/giveessential-web'),
+                  alt: 'Give Essential websites on Apple devices'
+                }}
+              />
+              <Project
                 name='Dartmouth WiFi'
                 org='DALI Lab'
                 date='Winter 2020'
@@ -63,6 +73,7 @@ function App() {
                   src: genOptSrc('./media/wirelesstool-web'),
                   alt: 'Wireless Tool web app on Macbook Pro'
                 }}
+                flipped
               />
               <Project
                 name='Fenceable'
@@ -73,7 +84,6 @@ function App() {
                   src: genOptSrc('./media/fenceable-web'),
                   alt: 'Fenceable product image on white background'
                 }}
-                flipped
               />
               <Project
                 name='Vidya'
@@ -84,6 +94,7 @@ function App() {
                   src: genOptSrc('./media/kv-web'),
                   alt: 'Product images of Vidya App on iPhone'
                 }}
+                flipped
               />
             </div>
           </Route>
