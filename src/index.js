@@ -14,6 +14,15 @@ const store = createStore(reducers, {}, compose(
   window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f,
 ));
 
+// set favicon depending on system dark mode
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  const faviconDark = document.getElementById('faviconDark');
+  if (faviconDark) document.head.removeChild(faviconDark);
+} else {
+  const faviconLight = document.getElementById('faviconLight');
+  if (faviconLight) document.head.removeChild(faviconLight);
+}
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
