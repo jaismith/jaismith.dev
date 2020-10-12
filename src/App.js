@@ -112,7 +112,7 @@ function App() {
                 {
                   name: 'Give Essential',
                   location: 'USA',
-                  details: 'Humanitarian Aid | Developer'
+                  details: 'Humanitarian Aid | Lead Engineer'
                 },
                 {
                   name: 'HackDartmouth',
@@ -145,7 +145,7 @@ function App() {
                 {
                   workplace: 'Give Essential',
                   location: 'USA',
-                  position: 'Volunteer Developer (Full Stack)',
+                  position: 'Lead Engineer (Full Stack)',
                   timeframe: 'April 2020 - Present',
                   description: '- Streamlined signup and matching process for essential workers nationwide and donors with extra household supplies during the COVID-19 pandemic via an Express API integrated with Cloud Firestore; eliminating manual bottlenecks and helping the program to reach thousands of people, facilitate over $100k of individual donations, and secure over $60K in funding.\n' +
                               '- Built portal allowing 100+ volunteers to oversee and facilitate thousands of ongoing essential worker/donor matches.',
