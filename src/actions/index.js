@@ -4,7 +4,7 @@ import cheerio from 'cheerio';
 // this uses a proxy to bypass cors, may be unreliable
 const GITHUB_URL = 'https://cors-anywhere.herokuapp.com/github.com:443/users/jaismith/contributions';
 
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Nov', 'Dec'];
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 export const ActionTypes = {
   GET_ACTIVITY: 'GET_ACTIVITY',
