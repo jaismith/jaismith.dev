@@ -28,7 +28,7 @@ class Header extends PureComponent {
         <OnVisible className="header-chart">
           <ResponsiveContainer>
             <AreaChart
-              data={this.props.activity}
+              data={this.props.activity.map(d => ({...d, y: d.y + 5}))}
               baseValue={0.12}
               margin={{
                 top: 20,
@@ -60,7 +60,7 @@ class Header extends PureComponent {
                     <CustomLabel 
                       lines={this.props.activity[0].y !== 0 ?
                         [
-                          `${this.props.activity.reduce((sum, val) => sum + (val.y - 5), 0)} contributions`,
+                          `${this.props.activity.reduce((sum, val) => sum + val.y, 0)} contributions`,
                           `since ${this.props.activity[4].name}`
                         ] :
                         [
