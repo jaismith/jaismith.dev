@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_ROOT = 'http://api.jaismith.dev';
+const API_ROOT = 'https://api-jaismith-dev.herokuapp.com';
 
 export const ActionTypes = {
   GET_ACTIVITY: 'GET_ACTIVITY',
