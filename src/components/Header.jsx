@@ -51,7 +51,7 @@ class Header extends PureComponent {
               <ReferenceDot
                 className={`header-chart-refdot ${this.props.activity[0].y === 0 ? 'hidden' : ''}`}
                 x={this.props.activity.length - 1}
-                y={this.props.activity[this.props.activity.length - 1].y}
+                y={this.props.activity[this.props.activity.length - 1].y + 5}
                 r={7.5} fill={this.props.darkMode ? 'rgb(96, 182, 255)' : '#0054B4'} stroke={'none'}
               >
                 <Label

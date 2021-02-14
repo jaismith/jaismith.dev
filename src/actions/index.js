@@ -1,10 +1,6 @@
 import axios from 'axios';
-import cheerio from 'cheerio';
 
-// this uses a proxy to bypass cors, may be unreliable
-const GITHUB_URL = 'https://cors-anywhere.herokuapp.com/github.com:443/users/jaismith/contributions';
-
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const API_ROOT = 'http://api.jaismith.dev';
 
 export const ActionTypes = {
   GET_ACTIVITY: 'GET_ACTIVITY',
@@ -12,46 +8,12 @@ export const ActionTypes = {
 
 export function getActivity() {
   return (dispatch) => {
-    // get current time, offset by timezone
-    const localTime = new Date();
-    const utcTime = new Date(localTime - (localTime.getTimezoneOffset() * 60000));
-
-    // request github constribution data
-    axios.get(`${GITHUB_URL}`, { headers: { 'Accept': '*/*' }})
+    // request constribution data
+    axios.get(`${API_ROOT}/contributions`)
       .then((res) => {
-          // set reference date (20 days ago)
-          var ref = utcTime;
-          ref.setDate(ref.getDate() - 20);
-
-          // parse html
-          const html = cheerio.load(res.data);
-          var activity = [];
-
-          // loop through html elements and generate activity data
-          html('g > rect').each(function(_i, _el) {
-            // get datapoint date
-            let date = new Date(html(this).attr('data-date'));
-
-            // add to activity, if since ref
-            if (date > ref && date <= localTime) {
-              var datapoint = {
-                x: date.getDate() - ref.getDate(),
-                y: Number(html(this).attr('data-count')) + 5,
-              };
-
-              if ((activity.length + 1) % 5 === 0) {
-                const displayDate = new Date(date);
-                displayDate.setDate(date.getDate() + 1);
-                datapoint.name = `${months[displayDate.getMonth()]} ${displayDate.getDate()}`;
-              }
-
-              activity.push(datapoint);
-            }
-          });
-
-          dispatch({ type: ActionTypes.GET_ACTIVITY, payload: activity });
+        dispatch({ type: ActionTypes.GET_ACTIVITY, payload: res.data });
       }).catch((err) => {
-          console.error(`Error fetching github contribution history: ${err.message}`);
+        console.error(err.message);
       });
   };
 }
