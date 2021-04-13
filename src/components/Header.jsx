@@ -23,6 +23,8 @@ class Header extends PureComponent {
   }
 
   render() {
+    const totalActivity = this.props.activity.reduce((sum, val) => sum + val.y, 0);
+
     return (
       <div className={`header ${isMobile ? 'mobile' : ''}`}>
         <OnVisible className="header-chart">
@@ -46,10 +48,10 @@ class Header extends PureComponent {
               <Area
                 type='basis'
                 dataKey='y'
-                stroke={this.props.activity[0].y === 0 ? 'transparent' : this.props.darkMode ? 'rgb(96, 182, 255)' : '#0054B4'}
+                stroke={totalActivity === 0 ? 'transparent' : this.props.darkMode ? 'rgb(96, 182, 255)' : '#0054B4'}
                 fill='url(#grad)' />
               <ReferenceDot
-                className={`header-chart-refdot ${this.props.activity[0].y === 0 ? 'hidden' : ''}`}
+                className={`header-chart-refdot ${totalActivity === 0 ? 'hidden' : ''}`}
                 x={this.props.activity.length - 1}
                 y={this.props.activity[this.props.activity.length - 1].y + 5}
                 r={7.5} fill={this.props.darkMode ? 'rgb(96, 182, 255)' : '#0054B4'} stroke={'none'}
@@ -58,9 +60,9 @@ class Header extends PureComponent {
                   position={'right'}
                   content={
                     <CustomLabel 
-                      lines={this.props.activity[0].y !== 0 ?
+                      lines={totalActivity !== 0 ?
                         [
-                          `${this.props.activity.reduce((sum, val) => sum + val.y, 0)} contributions`,
+                          `${totalActivity} contributions`,
                           `since ${this.props.activity[4].name}`
                         ] :
                         [
