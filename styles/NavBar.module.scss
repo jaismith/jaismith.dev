@@ -8,25 +8,19 @@
   display: flex;
   justify-content: flex-end;
   transition: background 0.3s;
+  background: var(--background-color);
 
-  &.dark {
-    background: #181a1b;
-    color: rgb(186, 181, 171);
-  }
-
-  &.light {
-    background: white;
-    color: black;
-  }
+  a {
+    color: var(--text-color-nav);
+  } 
 }
 
-.nav-item {
+.navItem {
   text-decoration: none;
-  color: grey;
   font-size: 15pt;
   padding-left: 1em;
 
-  &.selected {
-      text-decoration: underline;
+  &.active {
+    text-decoration: underline;
   }
 }

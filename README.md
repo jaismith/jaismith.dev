@@ -1,30 +1,34 @@
-# Personal Portfolio Site
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-_Hosted at [jaismith.dev](https://jaismith.dev) via [Github Pages](https://pages.github.com/)._
+## Getting Started
 
-**Note**: Github Pages is not properly configured to host single page web apps by default, so a workaround is employed in this project (see [here](https://github.com/rafrex/spa-github-pages)).
+First, run the development server:
 
-## Stack
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-Built entirely in [React](https://reactjs.org/).
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Notable packages:
-- [axios](https://www.npmjs.com/package/axios)
-- [cheerio](https://www.npmjs.com/package/cheerio)
-- [node-sass](https://www.npmjs.com/package/node-sass)
-- [redux](https://www.npmjs.com/package/redux)
-- [react-redux](https://www.npmjs.com/package/react-redux)
-- [react-markdown](https://www.npmjs.com/package/react-markdown)
-- [react-router-dom](https://www.npmjs.com/package/react-router-dom)
-- [react-social-icons](https://www.npmjs.com/package/react-social-icons)
-- [recharts](https://www.npmjs.com/package/recharts)
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-## Features
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-### Github Activity
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-Github activity is pulled directly from the github profile page via `axios`, parsed by `cheerio`, and displayed in a `recharts` chart.
+## Learn More
 
-### Projects & Resume
+To learn more about Next.js, take a look at the following resources:
 
-Projects and Resume data are loaded from js objects in `App` and rendered dynamically.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

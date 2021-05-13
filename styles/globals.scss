@@ -15,8 +15,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 .app {
@@ -29,12 +28,19 @@ code {
   }
 
   &.light {
-    background: white;
-    color: black;
+    --background-color: white;
+    --text-color: black;
+    --text-color-nav: black;
+    --chart-color: #0054B4;
   }
 
   &.dark {
-    background: #181a1b;
-    color: rgba(249, 249, 249, 0.8);
+    --background-color: #181a1b;
+    --text-color: rgba(249, 249, 249, 0.8);
+    --text-color-nav: rgb(186, 181, 171);
+    --chart-color: rgb(96, 182, 255);
   }
+
+  background: var(--background-color);
+  color: var(--text-color);
 }

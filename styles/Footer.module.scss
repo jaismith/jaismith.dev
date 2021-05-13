@@ -30,7 +30,7 @@
   }
 }
 
-.footer-socials {
+.footerSocials {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,26 +44,26 @@
   }
 }
 
-.footer-credits {
+.footerCredits {
   flex: 0 0 30%;
   text-align: left;
   padding-left: 20px;
 }
 
-.footer-source {
+.footerSource {
   flex: 0 0 30%;
   text-align: right;
   padding-right: 20px;
 }
 
-.footer-row {
+.footerRow {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
 @media (max-width: 1050px) {
-  .footer-credits span {
+  .footerCredits span {
     display: none;
   }
 }

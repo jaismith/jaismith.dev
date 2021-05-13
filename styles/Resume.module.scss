@@ -10,39 +10,39 @@
     width: 90%;
     flex-direction: column;
 
-    .resume-sidebar {
+    .resumeSidebar {
       width: 100%;
       text-align: center;
     }
 
-    .resume-sidebar-header {
+    .resumeSidebarHeader {
       font-size: 18pt;
     }
 
-    .resume-organizations {
+    .resumeOrganizations {
       min-width: 0;
     }
 
-    .resume-experiences {
+    .resumeExperiences {
       min-width: 0;
       padding-left: 0;
     }
     
-    .resume-experiences-header {
+    .resumeExperiencesHeader {
       font-size: 18pt;
       padding-bottom: 0;
     }
   }
 }
 
-.resume-sidebar {
+.resumeSidebar {
   flex: 0 0 1;
   display: flex;
   flex-direction: column;
   color: rgba(255, 255, 255, 0.4);
 }
 
-.resume-sidebar-header {
+.resumeSidebarHeader {
   font-weight: bold;
   font-size: 14pt;
   line-height: 14pt;
@@ -50,7 +50,7 @@
   color: rgba(249, 249, 249, 0.8);
 }
 
-.resume-education {
+.resumeEducation {
   padding-bottom: 20px;
 
   :nth-child(n + 2) {
@@ -63,7 +63,7 @@
   }
 }
 
-.resume-organizations {
+.resumeOrganizations {
   padding-bottom: 20px;
   min-width: 225px;
 
@@ -77,7 +77,7 @@
   }
 }
 
-.resume-experiences {
+.resumeExperiences {
   min-width: 400px;
   flex: 1 0 4;
   display: flex;
@@ -85,14 +85,14 @@
   padding-left: 5vw;
 }
 
-.resume-experiences-header {
+.resumeExperiencesHeader {
   font-size: 24pt;
   line-height: 24px;
   font-weight: bold;
   padding-bottom: 20px;
 }
 
-.resume-experience {
+.resumeExperience {
   border-bottom: 1px solid lightgrey;
   transition: transform 0.6s, opacity 0.6s;
   
@@ -107,16 +107,16 @@
   }
 }
 
-.resume-experience-logo {
+.resumeExperienceLogo {
   height: 75px;
   padding: 20px 0 10px 0;
 }
 
-.resume-experience-header {
+.resumeExperienceHeader {
   font-size: 14pt;
   padding-top: 20px;
 }
 
-.resume-experience-summary {
+.resumeExperienceSummary {
   color: rgba(255, 255, 255, 0.4);
 }

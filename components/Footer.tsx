@@ -1,25 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { SocialIcon } from 'react-social-icons';
 import { isMobile } from 'react-device-detect';
-import './stylesheets/Footer.scss';
+import classes from 'utils/classes';
 
-const renderSocials = (socials) => (
-  <div className="footer-socials">
+import styles from 'styles/Footer.module.scss';
+
+const renderSocials = (socials: string[]) => (
+  <div className={styles.footerSocials}>
     {socials.map((link) => (
       <SocialIcon
         key={link}
         url={link} 
         bgColor='black'
         fgColor='white'
-        style={{ height: 40, width: 40 }}
+        // style={{ height: 40, width: 40 }}
         className="icon" />
     ))}
   </div>
 );
 
 const renderSource = () => (
-  <div className="footer-source">
+  <div className={styles.footerSource}>
     <a href='https://github.com/jaismith/jaismith.dev'>
       Source Code
     </a>
@@ -27,40 +27,38 @@ const renderSource = () => (
 );
 
 const renderCredits = () => (
-  <div className="footer-credits">
+  <div className={styles.footerCredits}>
     <span>Designed and Developed by </span>Jai K. Smith (2020)
   </div>
 );
 
-const Footer = (props) => (
-  <div className={`footer ${isMobile ? 'mobile' : ''}`}>
+type FooterProps = {
+  socialMedia: string[],
+}
+
+const Footer = ({
+  socialMedia,
+}: FooterProps) => (
+  <div className={classes(styles.footer, isMobile && styles.mobile)}>
     {isMobile
       ? (
         <>
-          <div className="footer-row">
+          <div className={styles.footerRow}>
             {renderCredits()}
             {renderSource()}
           </div>
-          <div className="footer-row">
-            {renderSocials(props.socialMedia)}
+          <div className={styles.footerRow}>
+            {renderSocials(socialMedia)}
           </div>
         </>
       ) : (
         <>
           {renderCredits()}
-          {renderSocials(props.socialMedia)}
+          {renderSocials(socialMedia)}
           {renderSource()}
         </>
       )}
   </div>
 );
-
-Footer.propTypes = {
-  socialMedia: PropTypes.array,
-};
-
-Footer.defaultProps = {
-  socialMedia: []
-};
 
 export default Footer;

@@ -10,24 +10,24 @@
     height: 90vh;
     margin-bottom: 5vh;
 
-    .header-chart {
+    .headerChart {
       width: 97.5%;
     }
 
-    .header-box {
+    .headerBox {
       flex-direction: column;
       -ms-transform: translate(-50%, -60%);
       transform: translate(-50%, -60%);
     }
 
-    .header-title {
+    .headerTitle {
       padding: 40px 0 0 0;
       text-align: center;
     }
   }
 }
 
-.header-chart {
+.headerChart {
   position: absolute;
   z-index: 0;
   top: 65%;
@@ -44,21 +44,22 @@
   }
 }
 
-.header-chart-refdot {
+.headerChartRefdot {
   transition: 1s;
+  color: var(--text-color);
+
+  // circle {
+  //   fill: var(--chart-color) !important;
+  // }
 
   &.hidden {
     -ms-transform: translateY(15%);
     transform: translateY(15%);
     opacity: 0;
   }
-
-  &.dark {
-    color: white;
-  }
 }
 
-.header-pic {
+.headerPic {
   height: 20vh;
   min-height: 150px;
 
@@ -69,7 +70,7 @@
   }
 }
 
-.header-box {
+.headerBox {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -82,21 +83,21 @@
   padding: 2.5em;
 }
 
-.header-title {
+.headerTitle {
   display: flex;
   flex-direction: column;
   text-align: left;
   padding-left: 40px;
 }
 
-.header-title-main {
+.headerTitleMain {
   font-weight: bolder;
   line-height: 36pt;
   font-size: 36pt;
   margin: 0 0 7.5px 0;
 }
 
-.header-title-sub {
+.headerTitleSub {
   font-weight: lighter;
   line-height: 26pt;
   font-size: 18pt;
