@@ -11,13 +11,11 @@ const NavBar = () => {
     <div className={styles.nav}>
       <Link 
         href="/"
-        shallow
       >
         <a className={classes(styles.navItem, pathname === '/' && styles.active)}>Projects</a>
       </Link>
       <Link
         href='/resume'
-        shallow
       >
         <a className={classes(styles.navItem, pathname === '/resume' && styles.active)}>Resume</a>
       </Link>

@@ -1,4 +1,6 @@
-// import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import ReactGA from 'react-ga';
 
 import Header, { HeaderProps, getStaticHeaderProps } from 'components/Header';
 import Projects from 'components/Projects';
@@ -11,18 +13,18 @@ const genOptSrc = (imgName: string) => ({
 const ProjectsPage = ({
   activity,
 }: HeaderProps) => {
-  // const router = useRouter();
+  const router = useRouter();
 
   // initialize google analytics
-  // ReactGA.initialize('UA-145221220-1');
+  ReactGA.initialize('UA-145221220-1');
 
-  // useEffect(
-  //   () => {
-  //     ReactGA.set({ page: router.pathname, });
-  //     ReactGA.pageview(router.pathname);
-  //   },
-  //   [location]
-  // );
+  useEffect(
+    () => {
+      ReactGA.set({ page: router.pathname, });
+      ReactGA.pageview(router.pathname);
+    },
+    [router.pathname]
+  );
 
   return (
     <>
