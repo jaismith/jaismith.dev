@@ -12,7 +12,6 @@ const renderSocials = (socials: string[]) => (
         url={link} 
         bgColor='black'
         fgColor='white'
-        // style={{ height: 40, width: 40 }}
         className="icon" />
     ))}
   </div>
