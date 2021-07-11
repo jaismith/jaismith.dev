@@ -1,15 +1,60 @@
+.project,
+.projectTitle,
+.projectTitleMain,
+.projectTitleSub,
+.projectContent,
+.projectContentBlurb,
+.projectContentShowcase {
+  transition-property: transform, opacity;
+  // transition-timing-function: ease-out;
+}
+
+.project {
+  transition-duration: 0.6s;
+}
+
+.projectTitle,
+.projectTitleMain,
+.projectTitleSub {
+  transition-duration: 0.5s;
+}
+
+.projectContent,
+.projectContentBlurb,
+.projectContentShowcase {
+  transition-duration: 0.4s;
+  transition-delay: 0.1s;
+}
+
 .project {
   padding: 5% 7.5% 5% 7.5%;
-  transition: transform 0.6s, opacity 0.6s;
 
-  &:not(:first-child) {
-    transform: translateY(50px);
+  &:not(:first-child):not(.visible) {
     opacity: 0;
-  }
+    transform: translateY(50px);
 
-  &.visible {
-    transform: translateY(0);
-    opacity: 1;
+    .projectTitle,
+    .projectContent {
+      opacity: 0;
+    }
+
+    .projectTitleMain {
+      transform: translateX(-50px);
+    }
+
+    &:not(.flipped) .projectContentShowcase,
+    &.flipped .projectContentBlurb {
+      transform: translateX(-40px);
+    }
+
+    .projectTitleSub {
+      transform: translateX(50px);
+    }
+    
+    &:not(.flipped) .projectContentBlurb,
+    &.flipped .projectContentShowcase {
+      transform: translateX(40px);
+    }
   }
 
   &.flipped {
