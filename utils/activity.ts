@@ -2,7 +2,6 @@ import axios from 'axios';
 import cheerio from 'cheerio';
 
 const GITHUB_URL = 'https://github.com/users/jaismith/contributions';
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 export type Datapoint = {
   x: number,
@@ -11,22 +10,17 @@ export type Datapoint = {
 };
 
 export const getActivity = async () => {
-  // get current time, offset by timezone
-  const localTime = new Date();
-  const utcTime = new Date(localTime.getTime() - (localTime.getTimezoneOffset() * 60000));
-
   // request github constribution data
   let data: any;
   try {
     data = (await axios.get(`${GITHUB_URL}`, { headers: { 'Accept': '*/*' }})).data;
   } catch (err) {
-    console.error(`Error fetching github contribution history: ${err.message}`);
     throw new Error('Error fetching github contributions, see server logs.');
   }
 
-  // set reference date (20 days ago)
-  let ref = utcTime;
-  ref.setDate(ref.getDate() - 20);
+  // get ref date 3 month ago in UTC
+  const ref = new Date();
+  ref.setDate(ref.getDate() - 25);
 
   // parse html
   const html = cheerio.load(data);
@@ -39,20 +33,10 @@ export const getActivity = async () => {
     let date = new Date(time);
 
     // add to activity, if since ref
-    if (date > ref && date <= localTime) {
-      let datapoint: Datapoint = {
-        x: date.getDate() - ref.getDate(),
-        y: parseInt(html(this).attr('data-count')),
-      };
-
-      if ((activity.length + 1) % 5 === 0) {
-        const displayDate = new Date(date);
-        displayDate.setDate(date.getDate() + 1);
-        datapoint.name = `${MONTHS[displayDate.getMonth()]} ${displayDate.getDate()}`;
-      }
-
-      activity.push(datapoint);
-    }
+    if (date > ref) activity.push({
+      x: date.getTime(),
+      y: parseInt(html(this).attr('data-count')),
+    });
   });
 
   return activity;

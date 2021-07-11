@@ -4,7 +4,7 @@ import {
 } from 'recharts';
 import { isMobile } from 'react-device-detect';
 import OnVisible from 'react-on-visible';
-import { Datapoint, getActivity } from 'utils/activity';
+import { Datapoint, getActivity, getLocalDayOffset } from 'utils/activity';
 import classes from 'utils/classes';
 
 import CustomLabel from 'components/CustomLabel';
@@ -14,6 +14,8 @@ import styles from 'styles/Header.module.scss';
 export type HeaderProps = {
   activity: Datapoint[],
 };
+
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 export const getStaticHeaderProps: GetStaticProps<HeaderProps> = async () => {
   // default to some dummy data
@@ -34,7 +36,16 @@ export const getStaticHeaderProps: GetStaticProps<HeaderProps> = async () => {
 const Header = ({
   activity,
 }: HeaderProps) => {
-  const totalActivity = activity.reduce((sum, val) => sum + val.y, 0);
+  // attach date string to activity data at interval
+  activity.forEach((datapoint, idx) => {
+    if (idx % 5 === 0) {
+      const displayDate = new Date(datapoint.x);
+      datapoint.name = `${MONTHS[displayDate.getMonth()]} ${displayDate.getDate()}`
+    }
+  });
+
+  // calc total activity over period
+  let totalActivity = activity.reduce((sum, val) => sum + val.y, 0);
 
   return (
     <div className={classes(styles.header, isMobile && styles.mobile)}>
@@ -75,7 +86,7 @@ const Header = ({
                     lines={totalActivity !== 0 ?
                       [
                         `${totalActivity} contributions`,
-                        `since ${activity[4].name}`
+                        `since ${activity[0].name}`
                       ] :
                       [
                         'Loading activity...'
