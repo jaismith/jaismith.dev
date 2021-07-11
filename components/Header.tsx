@@ -4,7 +4,7 @@ import {
 } from 'recharts';
 import { isMobile } from 'react-device-detect';
 import OnVisible from 'react-on-visible';
-import { Datapoint, getActivity, getLocalDayOffset } from 'utils/activity';
+import { Datapoint, getActivity } from 'utils/activity';
 import classes from 'utils/classes';
 
 import CustomLabel from 'components/CustomLabel';
