@@ -18,19 +18,27 @@ const ProjectsPage = ({
   // initialize google analytics
   ReactGA.initialize('UA-145221220-1');
 
-  useEffect(
-    () => {
+  useEffect(() => {
       ReactGA.set({ page: router.pathname, });
       ReactGA.pageview(router.pathname);
-    },
-    [router.pathname]
-  );
+  }, [router.pathname]);
 
   return (
     <>
       <Header activity={activity} />
       <Projects
         projects={[
+          {
+            name: 'Skiff',
+            link: 'https://skiff.org',
+            org: 'Skiff',
+            date: 'December 2020 - June 2021',
+            blurb: 'The first fully end-to-end encrypted alternative to Google\'s collaboration suite. Complete with expiring links, password protection, and fine access controls, Skiff provides a privacy centric solution to collaborative document editing. The team raised a 3.7 million dollar round in 2021, led by Sequoia.',
+            img: {
+              src: genOptSrc('/media/skiff-web'),
+              alt: 'Skiff collaborative editor on Macbook Air'
+            },
+          },
           {
             name: 'Give Essential',
             link: 'https://giveessential.org',

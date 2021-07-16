@@ -83,16 +83,15 @@
 
   a {
     text-decoration: none;
-    color: black;
-    border-bottom-width: 3px;
-    border-bottom-style: solid;
+    color: var(--chart-color);
+    border-bottom: 0px solid transparent;
     display: inline-block;
     line-height: 0.95;
-    border-color: transparent;
-    transition: border-bottom-color 0.15s;
+    transition: border-bottom-color 0.25s, border-bottom-width 0.15s;
 
     &:hover {
-      border-bottom-color: black;
+      border-bottom-color: var(--chart-color);
+      border-bottom-width: 3px;
     }
   }
 }

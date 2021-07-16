@@ -37,9 +37,7 @@ function App({ Component, pageProps }) {
       <Footer socialMedia={[
         'https://twitter.com/jksmithnyc',
         'https://github.com/jaismith',
-        'https://www.instagram.com/jai.k.smith',
         'https://linkedin.com/in/jaiksmith',
-        'https://www.facebook.com/jai.smith.22'
       ]}/>
     </div>
   );
