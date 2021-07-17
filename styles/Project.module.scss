@@ -6,7 +6,6 @@
 .projectContentBlurb,
 .projectContentShowcase {
   transition-property: transform, opacity;
-  // transition-timing-function: ease-out;
 }
 
 .project {
@@ -83,14 +82,14 @@
 
   a {
     text-decoration: none;
-    color: var(--chart-color);
+    color: black;
     border-bottom: 0px solid transparent;
     display: inline-block;
     line-height: 0.95;
     transition: border-bottom-color 0.25s, border-bottom-width 0.15s;
 
     &:hover {
-      border-bottom-color: var(--chart-color);
+      border-bottom-color: black;
       border-bottom-width: 3px;
     }
   }
@@ -116,6 +115,8 @@
 .projectContentBlurb {
   width: 35%;
   font-size: 18pt;
+  user-select: none;
+  cursor: default;
 }
 
 .projectContentShowcase {
@@ -150,4 +151,9 @@
     padding-top: 30px;
     width: 100%;
   }
+}
+
+.unclickable {
+  pointer-events: none;
+  cursor: default;
 }

@@ -46,11 +46,13 @@ const Project = ({
       </div>
     </div>
     <div className={[styles.projectContent, flipped ? styles.flipped : ''].join(' ')}>
-      <picture className={styles.projectContentShowcase}>
-        <source srcSet={project.img.src.webp} type="image/webp" />
-        <source srcSet={project.img.src.png} type="image/png" />
-        <img src={project.img.src.png} alt={project.img.alt} />
-      </picture>
+      <a href={project.link || ''} className={[styles.projectContentShowcase, !project.link ? styles.unclickable : ''].join(' ')}>
+        <picture className={styles.projectContentShowcase}>
+          <source srcSet={project.img.src.webp} type="image/webp" />
+          <source srcSet={project.img.src.png} type="image/png" />
+          <img src={project.img.src.png} alt={project.img.alt} />
+        </picture>
+      </a>
       <div className={styles.projectContentBlurb}>
         {project.blurb}
       </div>
