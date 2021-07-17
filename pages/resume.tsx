@@ -33,6 +33,14 @@ const ResumePage = ({
       ]}
       experiences={[
         {
+          workplace: 'Skiff',
+          location: 'San Francisco, CA',
+          position: 'Product Engineer',
+          timeframe: 'December 2020 - June 2021',
+          description: '- Designed and implemented core functionality in an end-to-end encrypted document editing platform; including live cursor previews, collaborative commenting, and SRP credential caching.\n' +
+                      '- Contributed to product and company direction brainstorms during key months before and after public launch.',
+        },
+        {
           workplace: 'DALI Lab',
           location: 'Hanover, NH',
           position: 'Software Engineer (Mentor)',
