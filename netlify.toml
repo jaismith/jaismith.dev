@@ -1,7 +1,10 @@
 [build]
   base = "/"
+  command = "yarn build"
+  commandOrigin = "/"
   publish = "out"
-  command = "next build"
+  publishOrigin = "/"
+
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
