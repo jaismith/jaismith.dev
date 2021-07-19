@@ -1,8 +1,6 @@
 # Personal Portfolio Site
 
-_Hosted at [jaismith.dev](https://jaismith.dev) via [Netlify](https://www.netlify.com)._
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/1f441df9-c49d-435a-9bae-79a26b8c87bd/deploy-status)](https://app.netlify.com/sites/jaismith-dev/deploys)
+_Hosted at [jaismith.dev](https://jaismith.dev) via [Vercel](https://vercel.com)._
 
 ## Stack
 
