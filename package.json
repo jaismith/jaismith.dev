@@ -10,7 +10,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@netlify/plugin-nextjs": "^3.7.1",
     "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.9",
     "next": "^11.0.1",
