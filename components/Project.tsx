@@ -4,16 +4,22 @@ import classes from 'utils/classes';
 
 import styles from 'styles/Project.module.scss'
 
+type MultiFormatImage = {
+  png: string;
+  webp: string;
+}
+
+type ProjectImage = {
+  src: MultiFormatImage;
+  alt: string;
+}
+
 export type ProjectType = {
   name: string;
   org: string;
   date: string;
   blurb: string;
-  // img: {
-  //   src: string
-  //   alt: string;
-  // };
-  img: any,
+  img: ProjectImage;
   link?: string;
 };
 

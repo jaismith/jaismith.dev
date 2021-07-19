@@ -22,8 +22,14 @@ npm-debug.log*
 # yarn
 yarn-debug.log*
 yarn-error.log*
+,yarnrc
 .yarn/*
+!.yarn/patches
 !.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
 
 # next
 .next
