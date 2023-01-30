@@ -108,8 +108,8 @@ const Header = ({
       <div className={styles.headerBox}>
         <picture className={styles.headerPic}>
           <source srcSet="/media/profile-web.webp" type="image/webp" />
-          <source srcSet="/media/profile-web.jpeg" type="image/jpeg" />
-          <img src="/media/profile-web.jpeg" alt="Self Portrait" />
+          <source srcSet="/media/profile-web.png" type="image/png" />
+          <img src="/media/profile-web.png" alt="Self Portrait" />
         </picture>
         <div className={styles.headerTitle}>
           <div className={styles.headerTitleMain}>
