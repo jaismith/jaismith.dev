@@ -11,16 +11,18 @@ const NavBar = () => {
     <div className={styles.nav}>
       <Link 
         href="/"
+        className={classes(styles.navItem, pathname === '/' && styles.active)}
       >
-        <a className={classes(styles.navItem, pathname === '/' && styles.active)}>Projects</a>
+        Projects
       </Link>
       <Link
         href='/resume'
+        className={classes(styles.navItem, pathname === '/resume' && styles.active)}
       >
-        <a className={classes(styles.navItem, pathname === '/resume' && styles.active)}>Resume</a>
+        Resume
       </Link>
     </div>
-    );
+  );
 }
 
 export default NavBar;
