@@ -50,22 +50,24 @@ const Resume = ({
           </div>
         ))}
       </div>
-      <div className={styles.resumeOrganizations}>
-        <div className={styles.resumeSidebarHeader}>
-          Organizations
-        </div>
-        {organizations.map((organization) => (
-          <div
-            key={generateKey([organization.name, organization.location])}
-            className={styles.resumeOrganization}
-          >
-            <div className={styles.resumeSidebarItem}>
-              {organization.name}, <i>{organization.location}</i>
-            </div>
-            {organization.details}
+      {organizations.length > 0 && (
+        <div className={styles.resumeOrganizations}>
+          <div className={styles.resumeSidebarHeader}>
+            Organizations
           </div>
-        ))}
-      </div>
+          {organizations.map((organization) => (
+            <div
+              key={generateKey([organization.name, organization.location])}
+              className={styles.resumeOrganization}
+            >
+              <div className={styles.resumeSidebarItem}>
+                {organization.name}, <i>{organization.location}</i>
+              </div>
+              {organization.details}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
     <div className={styles.resumeExperiences}>
       <div className={styles.resumeExperiencesHeader}>
