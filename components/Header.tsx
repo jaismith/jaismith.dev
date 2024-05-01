@@ -24,7 +24,7 @@ export const getStaticHeaderProps: GetStaticProps<HeaderProps> = async () => {
   try {
     activity = await getActivity();
   } catch (e) {
-    console.log(`Failed to load activity: ${e.msg}`);
+    console.log('Failed to load activity:', e);
   };
 
   return {
