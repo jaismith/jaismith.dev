@@ -29,6 +29,28 @@ const ProjectsPage = ({
       <Projects
         projects={[
           {
+            name: 'Flowcast',
+            link: 'https://flowcast.jaismith.dev',
+            org: 'Personal',
+            date: 'January 2023 - Present',
+            blurb: 'Forecasting stream conditions throughout the United States using neural networks, and generating fishing reports with machine learning. A playground product to try new APIs, experiment with new serverless frameworks, and keep myself learning.',
+            img: {
+              src: genOptSrc('/media/flowcast'),
+              alt: 'Thursday Night Football on Prime Video on a Macbook Pro'
+            }
+          },
+          {
+            name: 'Live Event Advertising',
+            link: 'https://advertising.amazon.com',
+            org: 'Amazon',
+            date: 'October 2022 - Present',
+            blurb: 'Building novel solutions that extend cutting-edge ad interactivity and targeting capabilities typically found streaming TV to live sports. Solving mind-boggling scaling challenges.',
+            img: {
+              src: genOptSrc('/media/prime-video-ads'),
+              alt: 'Thursday Night Football on Prime Video on a Macbook Pro'
+            }
+          },
+          {
             name: 'Skiff',
             link: 'https://skiff.org',
             org: 'Skiff',
