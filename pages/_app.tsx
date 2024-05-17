@@ -27,10 +27,10 @@ function App({ Component, pageProps }) {
         <meta name="theme-color" content={darkMode ? 'black' : 'white'} />
         <meta
           name="description"
-          content="My name is Jai Smith, I'm a Junior at Dartmouth College studying Computer Science."
+          content="My name is Jai Smith, I'm a Software Engineer and Dartmouth Alum."
         />
         <link rel="manifest" href="/manifest.json" />
-        <title>Jai Smith - Software Engineer, Dartmouth Undergrad</title>
+        <title>Jai Smith - Software Engineer, Dartmouth Alum</title>
       </Helmet>
       <NavBar />
       <Component {...pageProps} />
