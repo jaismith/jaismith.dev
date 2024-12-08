@@ -57,7 +57,7 @@ export const getActivity = async () => {
 
   // get ref date 25 days ago in UTC
   const ref = new Date();
-  ref.setDate(ref.getMonth() - 6);
+  ref.setMonth(ref.getMonth() - 9);
 
   const activity: Datapoint[] = data.data?.user?.contributionsCollection?.contributionCalendar?.weeks
     .flatMap((w: any) => w.contributionDays as any[])
@@ -69,16 +69,24 @@ export const getActivity = async () => {
 
   const binsize = Math.ceil(activity.length / NUM_BINS);
   const binnedActivity: Datapoint[] = Array.from({ length: NUM_BINS }, (_, idx) => {
-    const startIndex = idx * NUM_BINS;
-    const endIndex = Math.min(startIndex + NUM_BINS, activity.length);
+    const startIndex = idx * binsize;
+    const endIndex = Math.min(startIndex + binsize, activity.length);
     const contributionsInBin = activity.slice(startIndex, endIndex);
+    
+    if (contributionsInBin.length === 0) {
+      return {
+        x: 0,
+        y: 0
+      };
+    }
+
     const totalContributions = contributionsInBin.reduce((sum, contribution) => sum + contribution.y, 0);
     const midpointDate = new Date(contributionsInBin[Math.floor(contributionsInBin.length / 2)].x);
     return {
-        x: midpointDate.getTime(),
-        y: totalContributions
+      x: midpointDate.getTime(),
+      y: totalContributions
     };
   });
 
-  return activity;
+  return binnedActivity;
 };

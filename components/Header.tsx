@@ -47,12 +47,15 @@ const Header = ({
   // calc total activity over period
   let totalActivity = activity.reduce((sum, val) => sum + val.y, 0);
 
+  // calc highest isolated datapoint (used to scale const base value)
+  const highestIsolated = activity.reduce((max, val) => Math.max(max, val.y), 0);
+
   return (
     <div className={classes(styles.header, isMobile && styles.mobile)}>
       <OnVisible className={styles.headerChart} visibleClassName={styles.visible}>
         <ResponsiveContainer>
           <AreaChart
-            data={activity.map(d => ({...d, y: d.y + 5}))}
+            data={activity.map(d => ({...d, y: d.y + (.25 * highestIsolated)}))}
             margin={{
               top: 20,
               right: isMobile ? 140 : 170,
@@ -74,7 +77,7 @@ const Header = ({
             <ReferenceDot
               className={classes(styles.headerChartRefdot, totalActivity === 0 && styles.hidden)}
               x={activity.length - 1}
-              y={activity[activity.length - 1].y + 5}
+              y={activity[activity.length - 1].y + (.25 * highestIsolated)}
               r={7.5}
               fill="var(--chart-color)"
               stroke="none"
