@@ -44,10 +44,21 @@ const ProjectsPage = ({
             link: 'https://advertising.amazon.com',
             org: 'Amazon',
             date: 'October 2022 - Present',
-            blurb: 'Building novel solutions that extend cutting-edge ad interactivity and targeting capabilities typically found streaming TV to live sports. Solving mind-boggling scaling challenges.',
+            blurb: 'Building novel solutions that extend cutting-edge ad interactivity and targeting capabilities typically found streaming TV to live sports. Scaling massive systems, and designing some of Amazon\'s first generative-AI powered adtech systems.',
             img: {
               src: genOptSrc('/media/prime-video-ads'),
               alt: 'Thursday Night Football on Prime Video on a Macbook Pro'
+            }
+          },
+          {
+            name: 'Line at Dartmouth',
+            link: 'https://www.thedartmouth.com/article/2022/04/new-linedartmouth-app-displays-wait-times-at-campus-hotspots',
+            org: 'Dartmouth Capstone',
+            date: 'September 2021 - April 2022',
+            blurb: 'A mobile app that tracks wait times at popular campus dining locations and study space usage around Dartmouth. Built as a spiritual successor to "Line@KAF", Line at Dartmouth leverages the campus Wi-Fi network to anonymously monitor hotspots using device dwell time (how long devices are connected to specific access points). Developed as a computer science capstone project with five teammates and successfully launched to the Dartmouth community in spring 2022.',
+            img: {
+              src: genOptSrc('/media/linedartmouth'),
+              alt: 'iOS App Store advert for Line at Dartmouth'
             }
           },
           {

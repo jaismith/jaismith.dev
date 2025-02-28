@@ -11,7 +11,7 @@ const ResumePage = ({
         {
           name: 'Dartmouth College',
           location: 'Hanover, NH',
-          details: 'Bachelor of Computer Science (2018-2022)'
+          details: 'Bachelor of Arts in Computer Science (2018-2022)'
         }
       ]}
       organizations={[
@@ -35,25 +35,30 @@ const ResumePage = ({
         {
           workplace: 'Amazon',
           location: 'New York, NY',
-          position: 'Software Development Engineer',
-          timeframe: 'October 2022 - Present',
-          description: '- Working on ad tech.',
+          position: 'Software Development Engineer (SDE I-II)',
+          timeframe: 'September 2022 - Present',
+          description: '- Founding engineer on Amazon\'s live event advertising team, rearchitecting key ad-serving systems to scale dynamic ad-insertion to ~25MM concurrent live streams.\n' +
+                      '- Developed an innovative video analysis pipeline with a principal applied research scientist, combining computer vision and language models to identify branding in content.\n' +
+                      '- Building deep experience with AWS, including distributed micro-service architecture, infrastructure as code, and monitoring; enabling highly observable systems with >99.999% request success rate.',
         },
         {
-          workplace: 'Skiff',
+          workplace: 'Skiff (acquired by Notion)',
           location: 'San Francisco, CA',
           position: 'Product Engineer',
-          timeframe: 'December 2020 - June 2021',
-          description: '- Designed and implemented core functionality in an end-to-end encrypted document editing platform; including live cursor previews, collaborative commenting, and SRP credential caching.\n' +
-                      '- Contributed to product and company direction brainstorms during key months before and after public launch.',
+          timeframe: 'December 2020 - July 2021',
+          description: '- Early engineer for an end-to-end encrypted collaboration platform serving journalists and users in regions with restricted internet freedoms.\n' +
+                      '- Designed and implemented key React UI components for the core document experience, including live cursor previews, commenting systems, and secure credential management.\n' +
+                      '- Applied conflict-resistant data types and modern web technologies to create a responsive editing experience that maintained security without compromising real-time functionality.',
         },
         {
-          workplace: 'DALI Lab',
+          workplace: 'Digital Applied Learning and Innovation Lab',
           location: 'Hanover, NH',
-          position: 'Software Engineer (Core)',
-          timeframe: 'January 2020 - June 2022',
-          description: '- Led a team of engineers in creating a reporting system to trace Wi-Fi complaints to access-points within the Dartmouth network; aggregating data from thousands of users to guide an ongoing multi-million-dollar campus infrastructure upgrade.\n' +
-                      '- Currently developing a highly customizable personal productivity web application using ReactJS and Cloud Firestore, targeting a private beta during Summer 2020 and set to be presented before investors later this year.',
+          position: 'Software Engineer, Mentor, Core Staff',
+          timeframe: 'January 2020 - July 2022',
+          description: '- Served as lead engineer in cross-functional teams, working alongside designers and product managers with entrepreneurial partners.\n' +
+                      '- Architected and implemented the technical foundation for multiple projects, including a web productivity app (now [bydesign](https://bydesign.io)), and Dartmouth\'s Wi-Fi reporting system used to guide a multi-million-dollar campus infrastructure upgrade.\n' +
+                      '- Created an automation framework that eliminated several days of termly operational workload related to hiring and mentorship processes.\n' +
+                      '- Mentored beginner and intermediate engineers, teaching full stack frameworks and principles.',
         },
         {
           workplace: 'Kathmandu Living Labs',
@@ -67,9 +72,9 @@ const ResumePage = ({
           workplace: 'Give Essential',
           location: 'USA',
           position: 'Lead Engineer (Full Stack)',
-          timeframe: 'April 2020 - December 2020',
-          description: '- Streamlined signup and matching process for essential workers nationwide and donors with extra household supplies during the COVID-19 pandemic via an Express API integrated with Cloud Firestore; eliminating manual bottlenecks and helping the program to reach thousands of people, facilitate over $100k of individual donations, and secure over $60K in funding.\n' +
-                      '- Built portal allowing 100+ volunteers to oversee and facilitate thousands of ongoing essential worker/donor matches.',
+          timeframe: 'April 2020 - September 2020',
+          description: '- Rapidly developed an Express API integrated with Cloud Firestore that streamlined matching between essential workers and donors during COVID-19, helping the program reach thousands of people, facilitate over $100K of individual donations, and secure over $60K in funding.\n' +
+                      '- Built portal allowing 100+ volunteers to oversee thousands of ongoing essential worker/donor matches.',
         },
         {
           workplace: 'Dartmouth Formula Racing',
@@ -82,11 +87,10 @@ const ResumePage = ({
         {
           workplace: 'HackDartmouth',
           location: 'Hanover, NH',
-          position: 'Contestant, Organizer, Lead Developer',
-          timeframe: 'April 2019 - June 2022',
-          description: '- Developed an offline instant messaging app as a contestant in 2019 using Bluetooth/Wi-Fi Direct mesh technology to send end-to-end encrypted messages over a decentralized network of nearby smartphones (awarded over $1k by Facebook).\n' +
-                      '- Lead developer of club website, our public facing portal for sponsors and hundreds of applicants nationwide.\n' +
-                      '- Responsible for holding workshops on campus to teach beginner developers languages like JavaScript, HTML, and CSS.',
+          position: 'Participant, Organizing Team Development Lead',
+          timeframe: 'April 2019 - July 2022',
+          description: '- Designed and built an offline messaging app using Bluetooth/Wi-Fi Direct mesh technology that enabled secure communication over a network of nearby smartphones without internet connectivity, earning a $1K award from Facebook.\n' +
+                      '- Led workshops to teach beginner-intermediate full-stack concepts to students and hackathon participants over 3 years.',
         },
       ]}
     />

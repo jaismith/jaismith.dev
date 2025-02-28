@@ -119,7 +119,7 @@ const Header = ({
             Jai K. Smith
           </div>
           <div className={styles.headerTitleSub}>
-            Software Engineer, Dartmouth Undergrad<br />
+            Software Engineer, Dartmouth Alum<br />
             <i>New York, NY</i>
           </div>
         </div>
