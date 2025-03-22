@@ -49,6 +49,10 @@ const Resume = ({
             {institution.details}
           </div>
         ))}
+        <a
+          href="mailto:jksmithnyc@gmail.com"
+          className={styles.resumeRequestFull}
+        >Request full resume</a>
       </div>
       {organizations.length > 0 && (
         <div className={styles.resumeOrganizations}>

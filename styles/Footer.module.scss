@@ -1,14 +1,14 @@
 .footer {
-  background-color: black;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   height: calc(5vh + .75vw);
-  color: white;
+  background-color: var(--background-color);
+  color: var(--text-color);
 
   a {
-    color: white;
+    color: var(--text-color);
     text-decoration: none;
   }
 

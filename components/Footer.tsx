@@ -10,8 +10,8 @@ const renderSocials = (socials: string[]) => (
       <SocialIcon
         key={link}
         url={link} 
-        bgColor='black'
-        fgColor='white'
+        bgColor='transparent'
+        fgColor='var(--text-color)'
         className="icon" />
     ))}
   </div>
