@@ -6,26 +6,7 @@ import generateKey from 'utils/keygen';
 import classes from 'utils/classes';
 
 import styles from 'styles/Resume.module.scss';
-
-type Entity = {
-  name: string;
-  location: string;
-  details: string;
-};
-
-type Experience = {
-  workplace: string;
-  location: string;
-  position: string;
-  timeframe: string;
-  description: string;
-};
-
-type ResumeProps = {
-  education: Entity[];
-  organizations: Entity[];
-  experiences: Experience[];
-};
+import { ResumeProps } from 'pages/resume';
 
 const Resume = ({
   education,
