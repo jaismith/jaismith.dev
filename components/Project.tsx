@@ -1,6 +1,7 @@
 import { isMobile } from 'react-device-detect';
 import OnVisible from 'react-on-visible';
 import classes from 'utils/classes';
+import Image from 'next/image';
 
 import styles from 'styles/Project.module.scss'
 
@@ -56,7 +57,7 @@ const Project = ({
         <picture className={styles.projectContentShowcase}>
           <source srcSet={project.img.src.webp} type="image/webp" />
           <source srcSet={project.img.src.png} type="image/png" />
-          <img src={project.img.src.png} alt={project.img.alt} />
+          <Image src={project.img.src.png} alt={project.img.alt} width={400} height={250} style={{objectFit: 'cover', width: '100%', height: 'auto'}} />
         </picture>
       </a>
       <div className={styles.projectContentBlurb}>

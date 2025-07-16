@@ -8,6 +8,7 @@ import { Datapoint, getActivity } from 'utils/activity';
 import classes from 'utils/classes';
 
 import CustomLabel from 'components/CustomLabel';
+import Image from 'next/image';
 
 import styles from 'styles/Header.module.scss';
 
@@ -112,7 +113,7 @@ const Header = ({
         <picture className={styles.headerPic}>
           <source srcSet="/media/profile-web.webp" type="image/webp" />
           <source srcSet="/media/profile-web.png" type="image/png" />
-          <img src="/media/profile-web.png" alt="Self Portrait" />
+          <Image src="/media/profile-web.png" alt="Self Portrait" width={160} height={160} style={{objectFit: 'cover', borderRadius: '50%'}} />
         </picture>
         <div className={styles.headerTitle}>
           <div className={styles.headerTitleMain}>
