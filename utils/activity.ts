@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { load } from 'cheerio';
 
-require('dotenv').config();
-
 const NUM_BINS = 25;
 const GITHUB_GRAPHQL_URL = 'https://api.github.com/graphql';
 const GITHUB_TOKEN = process.env['GITHUB_TOKEN'];
