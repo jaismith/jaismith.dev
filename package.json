@@ -21,7 +21,7 @@
     "react-device-detect": "^2.2.3",
     "react-dom": "^19.1.0",
     "react-ga": "^3.3.1",
-    "react-helmet": "^6.1.0",
+    "react-helmet-async": "^2.0.5",
     "react-markdown": "^10.1.0",
     "react-on-visible": "^1.6.0",
     "react-social-icons": "^6.24.0",
@@ -30,8 +30,7 @@
   "devDependencies": {
     "@next/env": "^15.4.1",
     "@types/node": "^24.0.14",
-    "@types/react": "^19.1.8",
-    "@types/react-helmet": "^6.1.11",
+        "@types/react": "^19.1.8",
     "debug": "^4.4.1",
     "encoding": "^0.1.13",
     "eslint": "^9.31.0",
