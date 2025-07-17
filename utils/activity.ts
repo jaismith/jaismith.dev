@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { load } from 'cheerio';
 
 const NUM_BINS = 25;
 const GITHUB_GRAPHQL_URL = 'https://api.github.com/graphql';
@@ -53,16 +52,19 @@ export const getActivity = async () => {
     throw new Error('Error fetching github contributions, see server logs.');
   }
 
-  // get ref date 25 days ago in UTC
+  // get ref date 9 months ago in UTC
   const ref = new Date();
   ref.setMonth(ref.getMonth() - 9);
 
-  const activity: Datapoint[] = data.data?.user?.contributionsCollection?.contributionCalendar?.weeks
-    .flatMap((w: any) => w.contributionDays as any[])
-    .filter((c: any) => new Date(c.date) > ref)
+  // Explicitly flatten all weeks and their contributionDays
+  const weeks = data?.data?.user?.contributionsCollection?.contributionCalendar?.weeks || [];
+  const allDays = weeks.flatMap((week: any) => Array.isArray(week.contributionDays) ? week.contributionDays : []);
+
+  const activity: Datapoint[] = allDays
+    .filter((c: any) => c && c.date && new Date(c.date) > ref)
     .map((c: any) => ({
       x: new Date(c.date).getTime(),
-      y: c.contributionCount
+      y: c.contributionCount ?? 0
     }));
 
   const binsize = Math.ceil(activity.length / NUM_BINS);
