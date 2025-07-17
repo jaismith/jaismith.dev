@@ -2,17 +2,29 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import ReactGA from 'react-ga';
 
-import Header, { HeaderProps, getStaticHeaderProps } from 'components/Header';
+import Header from 'components/Header';
 import Projects from 'components/Projects';
+import { getActivity, Datapoint } from 'utils/activity';
 
 const genOptSrc = (imgName: string) => ({
   png: imgName + '.png',
   webp: imgName + '.webp',
 });
 
-const ProjectsPage = ({
-  activity,
-}: HeaderProps) => {
+export async function getStaticProps() {
+  let activity: Datapoint[] = [{ x: 0, y: 0 }];
+  try {
+    activity = await getActivity();
+  } catch (e) {
+    console.log('Failed to load activity:', e);
+  }
+  return {
+    props: { activity },
+    revalidate: 3600,
+  };
+}
+
+export default function ProjectsPage({ activity }) {
   const router = useRouter();
 
   // initialize google analytics
@@ -117,8 +129,4 @@ const ProjectsPage = ({
       />
     </>
   );
-};
-
-export const getStaticProps = getStaticHeaderProps;
-
-export default ProjectsPage;
+}

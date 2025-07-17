@@ -4,7 +4,7 @@ import {
 } from 'recharts';
 import { isMobile } from 'react-device-detect';
 import OnVisible from 'react-on-visible';
-import { Datapoint, getActivity } from 'utils/activity';
+import { Datapoint } from 'utils/activity';
 import classes from 'utils/classes';
 
 import CustomLabel from 'components/CustomLabel';
@@ -17,45 +17,31 @@ export type HeaderProps = {
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-export const getStaticHeaderProps: GetStaticProps<HeaderProps> = async () => {
-  // default to some dummy data
-  let activity: Datapoint[] = [{ x: 0, y: 0, name: '' }];
-
-  try {
-    activity = await getActivity();
-  } catch (e) {
-    console.log('Failed to load activity:', e);
-  };
-
-  return {
-    props: { activity },
-    revalidate: 3600
-  };
-}
-
 const Header = ({
   activity,
 }: HeaderProps) => {
-  // attach date string to activity data at interval
-  activity.forEach((datapoint, idx) => {
-    if (idx % 5 === 0) {
-      const displayDate = new Date(datapoint.x);
-      datapoint.name = `${MONTHS[displayDate.getMonth()]} ${displayDate.getDate()}`
-    }
+  const labeledActivity = activity.map((datapoint, idx) => {
+    const displayDate = new Date(datapoint.x);
+    return {
+      ...datapoint,
+      name: idx % 5 === 0
+        ? `${MONTHS[displayDate.getMonth()]} ${displayDate.getDate()}`
+        : ''
+    };
   });
 
   // calc total activity over period
-  let totalActivity = activity.reduce((sum, val) => sum + val.y, 0);
+  let totalActivity = labeledActivity.reduce((sum, val) => sum + val.y, 0);
 
   // calc highest isolated datapoint (used to scale const base value)
-  const highestIsolated = activity.reduce((max, val) => Math.max(max, val.y), 0);
+  const highestIsolated = labeledActivity.reduce((max, val) => Math.max(max, val.y), 0);
 
   return (
     <div className={classes(styles.header, isMobile && styles.mobile)}>
       <OnVisible className={styles.headerChart} visibleClassName={styles.visible}>
         <ResponsiveContainer>
           <AreaChart
-            data={activity.map(d => ({...d, y: d.y + (.25 * highestIsolated)}))}
+            data={labeledActivity.map(d => ({...d, y: d.y + (.25 * highestIsolated)}))}
             margin={{
               top: 20,
               right: isMobile ? 140 : 170,
@@ -76,8 +62,8 @@ const Header = ({
               fill='url(#grad)' />
             <ReferenceDot
               className={classes(styles.headerChartRefdot, totalActivity === 0 && styles.hidden)}
-              x={activity.length - 1}
-              y={activity[activity.length - 1].y + (.25 * highestIsolated)}
+              x={labeledActivity.length - 1}
+              y={labeledActivity[labeledActivity.length - 1].y + (.25 * highestIsolated)}
               r={7.5}
               fill="var(--chart-color)"
               stroke="none"
@@ -89,7 +75,7 @@ const Header = ({
                     lines={totalActivity !== 0 ?
                       [
                         `${totalActivity} contributions`,
-                        `since ${activity[0].name}`
+                        `since ${labeledActivity[0].name}`
                       ] :
                       [
                         'Loading activity...'

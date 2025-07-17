@@ -1,8 +1,8 @@
 import Resume from 'components/Resume';
-import Header, { HeaderProps, getStaticHeaderProps } from 'components/Header';
-import { GetStaticProps, GetStaticPropsContext, PreviewData } from 'next/types';
-import { ParsedUrlQuery } from 'querystring';
+import Header, { HeaderProps } from 'components/Header';
+import { GetStaticProps } from 'next/types';
 import { compareExperiencesByTimeframe, Experience } from 'utils/experience';
+import { getActivity, Datapoint } from 'utils/activity';
 
 type Entity = {
   name: string;
@@ -32,8 +32,13 @@ const ResumePage = ({
   </>
 );
 
-export const getStaticProps: GetStaticProps<HeaderProps & ResumeProps> = async (context: GetStaticPropsContext<ParsedUrlQuery, PreviewData>) => {
-  const header = await getStaticHeaderProps(context);
+export const getStaticProps: GetStaticProps<HeaderProps & ResumeProps> = async () => {
+  let activity: Datapoint[] = [{ x: 0, y: 0 }];
+  try {
+    activity = await getActivity();
+  } catch (e) {
+    console.log('Failed to load activity:', e);
+  }
 
   const education = [
     {
@@ -125,14 +130,14 @@ export const getStaticProps: GetStaticProps<HeaderProps & ResumeProps> = async (
   ];
 
   return {
-    ...header,
     props: {
+      activity,
       education,
       organizations,
       experiences: experiences.sort(compareExperiencesByTimeframe),
-      ...('props' in header ? header.props : { activity: [] })
-    }
-  }
+    },
+    revalidate: 3600,
+  };
 };
 
 export default ResumePage;

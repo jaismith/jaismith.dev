@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import classes from 'utils/classes';
 
 import NavBar from 'components/NavBar';
@@ -32,31 +32,33 @@ function App({ Component, pageProps }) {
   }, []);
 
   return (
-    <div className={classes('app', darkMode ? 'dark' : 'light')}>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <link
-          key={systemDarkMode ? "dark-mode" : "light-mode"}
-          id="favicon"
-          rel="icon"
-          href={systemDarkMode ? "/faviconLight.ico" : "/faviconDark.ico"}
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content={darkMode ? '#181a1b' : 'white'} />
-        <meta
-          name="description"
-          content="My name is Jai Smith, I'm a Software Engineer and Dartmouth Alum."
-        />
-        <link rel="manifest" href="/manifest.json" />
-        <title>Jai Smith - Software Engineer, Dartmouth Alum</title>
-      </Helmet>
-      <NavBar />
-      <Component {...pageProps} />
-      <Footer socialMedia={[
-        'https://github.com/jaismith',
-        'https://linkedin.com/in/jaiksmith',
-      ]}/>
-    </div>
+    <HelmetProvider>
+      <div className={classes('app', darkMode ? 'dark' : 'light')}>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <link
+            key={systemDarkMode ? "dark-mode" : "light-mode"}
+            id="favicon"
+            rel="icon"
+            href={systemDarkMode ? "/faviconLight.ico" : "/faviconDark.ico"}
+          />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta name="theme-color" content={darkMode ? '#181a1b' : 'white'} />
+          <meta
+            name="description"
+            content="My name is Jai Smith, I'm a Software Engineer and Dartmouth Alum."
+          />
+          <link rel="manifest" href="/manifest.json" />
+          <title>Jai Smith - Software Engineer, Dartmouth Alum</title>
+        </Helmet>
+        <NavBar />
+        <Component {...pageProps} />
+        <Footer socialMedia={[
+          'https://github.com/jaismith',
+          'https://linkedin.com/in/jaiksmith',
+        ]}/>
+      </div>
+    </HelmetProvider>
   );
 };
 
