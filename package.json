@@ -30,7 +30,7 @@
   "devDependencies": {
     "@next/env": "^15.4.1",
     "@types/node": "^24.0.14",
-        "@types/react": "^19.1.8",
+    "@types/react": "^19.1.8",
     "debug": "^4.4.1",
     "encoding": "^0.1.13",
     "eslint": "^9.31.0",
@@ -40,5 +40,6 @@
     "scss": "^0.2.4",
     "supports-color": "^10.0.0",
     "typescript": "^5.8.3"
-  }
+  },
+  "packageManager": "pnpm@9.5.0+sha256.dbdf5961c32909fb030595a9daa1dae720162e658609a8f92f2fa99835510ca5"
 }

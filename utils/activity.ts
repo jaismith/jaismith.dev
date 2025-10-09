@@ -1,25 +1,8 @@
 import axios from 'axios';
 
-const NUM_BINS = 25;
-const GITHUB_GRAPHQL_URL = 'https://api.github.com/graphql';
-const GITHUB_TOKEN = process.env['GITHUB_TOKEN'];
-const GITHUB_CONTRIBUTIONS_QUERY = `
-  query($username: String!) { 
-    user(login: $username){
-      contributionsCollection {
-        contributionCalendar {
-          totalContributions
-          weeks {
-            contributionDays {
-              contributionCount
-              date
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+const NUM_BINS = 50;
+const CONTRIB_API_BASE = process.env['CONTRIB_API_BASE'];
+const GITHUB_USERNAME = process.env['GITHUB_USERNAME'];
 
 export type Datapoint = {
   x: number,
@@ -27,66 +10,82 @@ export type Datapoint = {
   name?: string,
 };
 
+function normalizeContributions(raw: any): { date: string; count: number }[] {
+  // v4 API returns { contributions: [{ date, count, level }], total: {...} }
+  if (raw && typeof raw === 'object' && Array.isArray(raw.contributions)) {
+    return raw.contributions.map((c: any) => ({
+      date: c.date,
+      count: c.count ?? 0
+    }));
+  }
+  // Fallback for array format
+  if (Array.isArray(raw)) return raw;
+  // Fallback for object format { 'YYYY-MM-DD': number }
+  if (raw && typeof raw === 'object') {
+    return Object.keys(raw).map(date => ({ date, count: raw[date] ?? 0 }));
+  }
+  return [];
+}
+
 export const getActivity = async () => {
-  // request github contribution data
+  // request github contribution data for the last year
   let data: any;
 
   try {
-    const res = await axios.post(
-      GITHUB_GRAPHQL_URL,
-      {
-        query: GITHUB_CONTRIBUTIONS_QUERY,
-        variables: {
-          username: 'jaismith'
-        }
-      },
-      {
-        headers: {
-          'Authorization': `bearer ${GITHUB_TOKEN}`
-        },
-      }
-    );
+    const res = await axios.get(`${CONTRIB_API_BASE}/v4/${GITHUB_USERNAME}?y=last`);
     data = res.data;
   } catch (e) {
     console.error(e);
     throw new Error('Error fetching github contributions, see server logs.');
   }
 
-  // get ref date 9 months ago in UTC
-  const ref = new Date();
-  ref.setMonth(ref.getMonth() - 9);
+  // Calculate date range: last 6 months up to today
+  const now = new Date();
+  now.setHours(23, 59, 59, 999); // End of today
+  const sixMonthsAgo = new Date();
+  sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+  sixMonthsAgo.setHours(0, 0, 0, 0); // Start of that day
 
-  // Explicitly flatten all weeks and their contributionDays
-  const weeks = data?.data?.user?.contributionsCollection?.contributionCalendar?.weeks || [];
-  const allDays = weeks.flatMap((week: any) => Array.isArray(week.contributionDays) ? week.contributionDays : []);
+  // Normalize contributions to daily array
+  const days = normalizeContributions(data);
 
-  const activity: Datapoint[] = allDays
-    .filter((c: any) => c && c.date && new Date(c.date) > ref)
-    .map((c: any) => ({
-      x: new Date(c.date).getTime(),
-      y: c.contributionCount ?? 0
+  // Filter to only last 6 months, up to today (no future dates)
+  const activity: Datapoint[] = days
+    .filter((d: any) => {
+      if (!d || !d.date) return false;
+      const date = new Date(d.date);
+      return date >= sixMonthsAgo && date <= now;
+    })
+    .map((d: any) => ({
+      x: new Date(d.date).getTime(),
+      y: d.count ?? 0
     }));
 
+  // Only bin if we have data
+  if (activity.length === 0) {
+    return [];
+  }
+
   const binsize = Math.ceil(activity.length / NUM_BINS);
-  const binnedActivity: Datapoint[] = Array.from({ length: NUM_BINS }, (_, idx) => {
+  const binnedActivity: Datapoint[] = [];
+
+  for (let idx = 0; idx < NUM_BINS; idx++) {
     const startIndex = idx * binsize;
     const endIndex = Math.min(startIndex + binsize, activity.length);
     const contributionsInBin = activity.slice(startIndex, endIndex);
     
+    // Skip empty bins instead of adding them with x: 0
     if (contributionsInBin.length === 0) {
-      return {
-        x: 0,
-        y: 0
-      };
+      continue;
     }
 
     const totalContributions = contributionsInBin.reduce((sum, contribution) => sum + contribution.y, 0);
     const midpointDate = new Date(contributionsInBin[Math.floor(contributionsInBin.length / 2)].x);
-    return {
+    binnedActivity.push({
       x: midpointDate.getTime(),
       y: totalContributions
-    };
-  });
+    });
+  }
 
   return binnedActivity;
 };

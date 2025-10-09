@@ -68,10 +68,17 @@ export const getStaticProps: GetStaticProps<HeaderProps & ResumeProps> = async (
 
   const experiences = [
     {
+      workplace: 'Anysphere',
+      location: 'New York, NY',
+      position: 'Software Engineer',
+      timeframe: 'August 2025 - Present',
+      description: '- Building Cursor.',
+    },
+    {
       workplace: 'Amazon',
       location: 'New York, NY',
       position: 'Software Development Engineer (SDE I-II)',
-      timeframe: 'September 2022 - Present',
+      timeframe: 'September 2022 - August 2025',
       description: '- Founding engineer on Amazon\'s live event advertising team, rearchitecting key ad-serving systems to scale dynamic ad-insertion to ~25MM concurrent live streams.\n' +
                   '- Developed an innovative video analysis pipeline with a principal applied research scientist, combining computer vision and language models to identify branding in content.\n' +
                   '- Building deep experience with AWS, including distributed micro-service architecture, infrastructure as code, and monitoring; enabling highly observable systems with >99.999% request success rate.',

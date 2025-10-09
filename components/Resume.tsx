@@ -56,7 +56,7 @@ const Resume = ({
     </div>
     <div className={styles.resumeExperiences}>
       <div className={styles.resumeExperiencesHeader}>
-        Experiences
+        Experience
       </div>
       {experiences.map((experience) => (
         <OnVisible
