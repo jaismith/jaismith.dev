@@ -25,7 +25,10 @@
     "react-markdown": "^10.1.0",
     "react-on-visible": "^1.6.0",
     "react-social-icons": "^6.24.0",
-    "recharts": "^3.1.0"
+    "recharts": "^3.1.0",
+    "@types/d3": "^7.4.3",
+    "d3": "^7.9.0",
+    "marching-squares": "^1.0.0"
   },
   "devDependencies": {
     "@next/env": "^15.4.1",

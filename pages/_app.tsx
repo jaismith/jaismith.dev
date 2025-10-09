@@ -5,6 +5,7 @@ import classes from 'utils/classes';
 
 import NavBar from 'components/NavBar';
 import Footer from 'components/Footer';
+import TopoBackground from 'components/TopoBackground';
 
 import 'styles/globals.scss';
 
@@ -51,6 +52,7 @@ function App({ Component, pageProps }) {
           <link rel="manifest" href="/manifest.json" />
           <title>Jai Smith - Software Engineer, Dartmouth Alum</title>
         </Helmet>
+        <TopoBackground />
         <NavBar />
         <Component {...pageProps} />
         <Footer socialMedia={[
