@@ -28,6 +28,14 @@ function normalizeContributions(raw: any): { date: string; count: number }[] {
 }
 
 export const getActivity = async () => {
+  // Validate environment variables
+  if (!CONTRIB_API_BASE) {
+    throw new Error('CONTRIB_API_BASE environment variable is not set. Please check .env.local and restart the dev server.');
+  }
+  if (!GITHUB_USERNAME) {
+    throw new Error('GITHUB_USERNAME environment variable is not set. Please check .env.local and restart the dev server.');
+  }
+
   // request github contribution data for the last year
   let data: any;
 

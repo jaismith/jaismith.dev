@@ -22,9 +22,10 @@ const Header = ({
 }: HeaderProps) => {
   const labeledActivity = activity.map((datapoint, idx) => {
     const displayDate = new Date(datapoint.x);
+    // Label every 10th datapoint for cleaner spacing (approximately every 2 weeks for 50 bins over 6 months)
     return {
       ...datapoint,
-      name: idx % 5 === 0
+      name: idx % 10 === 0
         ? `${MONTHS[displayDate.getMonth()]} ${displayDate.getDate()}`
         : ''
     };
@@ -90,6 +91,8 @@ const Header = ({
               dataKey='name'
               axisLine={false}
               tickLine={true}
+              interval={0}
+              tick={{ fontSize: 12 }}
             />
           </AreaChart>
         </ResponsiveContainer>
