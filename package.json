@@ -1,13 +1,14 @@
 {
   "name": "jaismith.dev",
   "author": "Jai Smith",
-  "version": "2.0",
+  "version": "3.0",
   "private": true,
   "engines": {
     "node": ">=18.17.0"
   },
   "scripts": {
     "dev": "next dev",
+    "build:wasm": "bash scripts/build-wasm.sh",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -18,14 +19,8 @@
     "dotenv": "^17.2.0",
     "next": "^15.4.1",
     "react": "^19.1.0",
-    "react-device-detect": "^2.2.3",
     "react-dom": "^19.1.0",
-    "react-ga": "^3.3.1",
-    "react-helmet-async": "^2.0.5",
-    "react-markdown": "^10.1.0",
-    "react-on-visible": "^1.6.0",
-    "react-social-icons": "^6.24.0",
-    "recharts": "^3.1.0"
+    "react-helmet-async": "^2.0.5"
   },
   "devDependencies": {
     "@next/env": "^15.4.1",
