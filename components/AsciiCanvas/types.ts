@@ -68,25 +68,5 @@ export interface HitAction {
   Custom?: string;
 }
 
-// WASM module interface
-export interface AsciiRenderer {
-  new(cols: number, rows: number): AsciiRenderer;
-  resize(cols: number, rows: number): void;
-  set_scroll(scroll_y: number): void;
-  get_scroll(): number;
-  get_content_height(): number;
-  set_hover(x: number, y: number): void;
-  set_content(json: string): void;
-  load_image(id: string, data: Uint8Array, width: number, height: number): void;
-  hit_test(x: number, y: number): string | undefined;
-  is_hoverable(x: number, y: number): boolean;
-  render(): Uint32Array;
-  get_width(): number;
-  get_height(): number;
-}
-
-export interface WasmModule {
-  default: () => Promise<void>;
-  Renderer: new(cols: number, rows: number) => AsciiRenderer;
-  create_renderer: (cols: number, rows: number) => AsciiRenderer;
-}
+// Re-export the Renderer type from the WASM module
+export type { Renderer as AsciiRenderer } from 'lib/wasm/ascii_renderer';

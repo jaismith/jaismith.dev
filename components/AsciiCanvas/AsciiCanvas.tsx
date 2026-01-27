@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useWasm } from './useWasm';
 import { useImages } from './useImages';
 import type { SiteContent, HitAction } from './types';
+import type { Renderer } from 'lib/wasm/ascii_renderer';
 
 import styles from './AsciiCanvas.module.css';
 

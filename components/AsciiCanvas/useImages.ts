@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import type { AsciiRenderer } from './types';
+import type { Renderer } from 'lib/wasm/ascii_renderer';
 
 interface ImageInfo {
   id: string;
@@ -12,7 +12,7 @@ interface UseImagesResult {
   loading: boolean;
 }
 
-export function useImages(renderer: AsciiRenderer | null): UseImagesResult {
+export function useImages(renderer: Renderer | null): UseImagesResult {
   const [imagesLoaded, setImagesLoaded] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(false);
   const pendingImages = useRef<Map<string, string>>(new Map());
