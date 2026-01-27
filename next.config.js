@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   
+  // Use webpack for WASM support (Turbopack WASM support is experimental)
+  turbopack: {},
+  
   // Enable WebAssembly support
   webpack: (config, { isServer }) => {
     // Enable async WebAssembly
