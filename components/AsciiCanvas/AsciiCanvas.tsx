@@ -180,7 +180,8 @@ export function AsciiCanvas({ content, imageUrls }: AsciiCanvasProps) {
     
     const delta = Math.sign(e.deltaY) * 3;
     const currentScroll = renderer.get_scroll();
-    const maxScroll = renderer.get_content_height() - dimensions.rows;
+    const contentHeight = renderer.get_content_height();
+    const maxScroll = Math.max(0, contentHeight - dimensions.rows);
     const newScroll = Math.max(0, Math.min(maxScroll, currentScroll + delta));
     
     renderer.set_scroll(newScroll);
@@ -191,9 +192,18 @@ export function AsciiCanvas({ content, imageUrls }: AsciiCanvasProps) {
   const handleClick = useCallback((e: React.MouseEvent<HTMLCanvasElement>) => {
     if (!renderer || !canvasRef.current) return;
 
-    const rect = canvasRef.current.getBoundingClientRect();
-    const x = Math.floor((e.clientX - rect.left) / CHAR_WIDTH);
-    const y = Math.floor((e.clientY - rect.top) / CHAR_HEIGHT);
+    const canvas = canvasRef.current;
+    const rect = canvas.getBoundingClientRect();
+    
+    // Account for CSS scaling - map display coordinates to canvas coordinates
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    
+    const canvasX = (e.clientX - rect.left) * scaleX;
+    const canvasY = (e.clientY - rect.top) * scaleY;
+    
+    const x = Math.floor(canvasX / CHAR_WIDTH);
+    const y = Math.floor(canvasY / CHAR_HEIGHT);
 
     const actionJson = renderer.hit_test(x, y);
     if (!actionJson) return;
@@ -215,15 +225,24 @@ export function AsciiCanvas({ content, imageUrls }: AsciiCanvasProps) {
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLCanvasElement>) => {
     if (!renderer || !canvasRef.current) return;
 
-    const rect = canvasRef.current.getBoundingClientRect();
-    const x = Math.floor((e.clientX - rect.left) / CHAR_WIDTH);
-    const y = Math.floor((e.clientY - rect.top) / CHAR_HEIGHT);
+    const canvas = canvasRef.current;
+    const rect = canvas.getBoundingClientRect();
+    
+    // Account for CSS scaling
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    
+    const canvasX = (e.clientX - rect.left) * scaleX;
+    const canvasY = (e.clientY - rect.top) * scaleY;
+    
+    const x = Math.floor(canvasX / CHAR_WIDTH);
+    const y = Math.floor(canvasY / CHAR_HEIGHT);
 
     renderer.set_hover(x, y);
     
     // Update cursor
     const isHoverable = renderer.is_hoverable(x, y);
-    canvasRef.current.style.cursor = isHoverable ? 'pointer' : 'default';
+    canvas.style.cursor = isHoverable ? 'pointer' : 'default';
   }, [renderer]);
 
   // Set up wheel event listener

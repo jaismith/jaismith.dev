@@ -239,13 +239,28 @@ impl Renderer {
 
     /// Hit test at a position (returns JSON action or null)
     pub fn hit_test(&self, x: u32, y: u32) -> Option<String> {
-        // Convert viewport coords to document coords
+        // First check navbar (fixed at top, uses viewport coords directly)
+        if y < 3 {
+            // Navbar area - check without scroll adjustment
+            if let Some(action) = self.hit_map.test(x, y) {
+                return Some(action_to_json(action));
+            }
+        }
+        
+        // Convert viewport coords to document coords for content
         let doc_y = y + self.layout.scroll_y;
         self.hit_map.test(x, doc_y).map(action_to_json)
     }
 
     /// Check if a position is hoverable
     pub fn is_hoverable(&self, x: u32, y: u32) -> bool {
+        // First check navbar
+        if y < 3 {
+            if self.hit_map.is_hovering(x, y) {
+                return true;
+            }
+        }
+        
         let doc_y = y + self.layout.scroll_y;
         self.hit_map.is_hovering(x, doc_y)
     }
@@ -263,6 +278,11 @@ impl Renderer {
     /// Get buffer height
     pub fn get_height(&self) -> u32 {
         self.buffer.height()
+    }
+
+    /// Get number of registered hit regions (for debugging)
+    pub fn get_hit_count(&self) -> u32 {
+        self.hit_map.len() as u32
     }
 }
 
@@ -288,42 +308,43 @@ impl Renderer {
     }
 
     fn calculate_content_height(&self, content: &SiteContent) -> u32 {
-        // Estimate height based on content
+        // Estimate height based on content - be generous to allow scrolling
         let nav_height = 3;
         let header_height = match self.layout.breakpoint {
-            Breakpoint::Mobile => 35,
-            _ => 25,
+            Breakpoint::Mobile => 45,
+            _ => 35,
         };
         
         let content_height = match content.page {
             PageType::Projects => {
-                content.projects.len() as u32 * 25 // rough estimate per project
+                // Each project takes roughly 25-30 lines
+                content.projects.len() as u32 * 30
             }
             PageType::Resume => {
-                content.experiences.len() as u32 * 12 + 20
+                // Each experience takes roughly 15 lines
+                content.experiences.len() as u32 * 15 + 30
             }
         };
         
         let footer_height = 5;
         
-        nav_height + header_height + content_height + footer_height + 10
+        // Add extra padding to ensure we can scroll to see everything
+        nav_height + header_height + content_height + footer_height + 20
     }
 
     fn render_projects_page(&mut self, content: &SiteContent) {
         let scroll_y = self.layout.scroll_y;
-        let view_height = self.layout.viewport_height;
+        let _view_height = self.layout.viewport_height;
         
         let content_x = self.layout.get_content_x();
         let content_width = self.layout.get_content_width();
         
-        let mut y: i32 = -(scroll_y as i32);
+        // Content starts at row 3 (after navbar) in document space
+        // When scrolled, we offset by scroll_y
+        let mut y: i32 = 3 - (scroll_y as i32);
         
         // Navbar (fixed at top - always render at y=0 in viewport)
         self.render_navbar(content, 0);
-        let nav_height = 3;
-        
-        // Adjust starting position for content (below navbar)
-        y += nav_height as i32;
         
         // Header
         let header_height = self.render_header(&content.header, content_x, &mut y, content_width);
@@ -347,12 +368,11 @@ impl Renderer {
         let content_x = self.layout.get_content_x();
         let content_width = self.layout.get_content_width();
         
-        let mut y: i32 = -(scroll_y as i32);
+        // Content starts at row 3 (after navbar) in document space
+        let mut y: i32 = 3 - (scroll_y as i32);
         
         // Navbar
         self.render_navbar(content, 0);
-        let nav_height = 3;
-        y += nav_height as i32;
         
         // Header
         let header_height = self.render_header(&content.header, content_x, &mut y, content_width);
@@ -398,28 +418,29 @@ impl Renderer {
         let link_style = TextStyle::new(self.theme.link_color).clickable();
         let active_style = TextStyle::new(self.theme.text_color).underline();
         
-        // Background for navbar
-        self.buffer.fill_bg(0, y, self.buffer.width(), 2, self.theme.bg_color);
+        // Background for navbar - 3 rows for better click area
+        self.buffer.fill_bg(0, y, self.buffer.width(), 3, self.theme.bg_color);
         
-        // Render nav items on the right
-        let mut x = self.buffer.width() - 2;
+        // Render nav items on the right, centered vertically in navbar
+        let text_y = y + 1; // Center text in navbar
+        let mut x = self.buffer.width().saturating_sub(5);
         
         for item in content.navigation.iter().rev() {
             let is_active = item.path == content.active_path;
             let item_style = if is_active { &active_style } else { &link_style };
             
             let label_width = item.label.len() as u32;
-            x = x.saturating_sub(label_width + 2);
+            x = x.saturating_sub(label_width + 3);
             
             if !is_active {
-                // Register hit region for non-active items
+                // Register hit region for non-active items - cover full navbar height
                 self.hit_map.register_link(
-                    Rect::new(x, y, label_width, 1),
+                    Rect::new(x, y, label_width + 2, 3),
                     &item.path,
                 );
             }
             
-            render_text(&mut self.buffer, x, y, &item.label, item_style);
+            render_text(&mut self.buffer, x, text_y, &item.label, item_style);
         }
     }
 
@@ -576,8 +597,10 @@ impl Renderer {
             render_text(&mut self.buffer, title_x, *y as u32, &project.name, title_style);
             
             if let Some(ref link) = project.link {
+                // Register hit region in document coordinates (viewport_y + scroll_y)
+                let doc_y = (*y as u32) + self.layout.scroll_y;
                 self.hit_map.register_link(
-                    Rect::new(title_x, *y as u32, project.name.len() as u32, 1),
+                    Rect::new(title_x, doc_y, project.name.len() as u32, 1),
                     link,
                 );
             }
@@ -684,8 +707,10 @@ impl Renderer {
         if *y >= 0 && *y < self.buffer.height() as i32 {
             let link_text = "Request full resume";
             render_text(&mut self.buffer, x, *y as u32, link_text, &link_style);
+            // Register hit region in document coordinates
+            let doc_y = (*y as u32) + self.layout.scroll_y;
             self.hit_map.register_link(
-                Rect::new(x, *y as u32, link_text.len() as u32, 1),
+                Rect::new(x, doc_y, link_text.len() as u32, 1),
                 "mailto:jksmithnyc@gmail.com",
             );
         }
@@ -777,13 +802,15 @@ impl Renderer {
         
         let social_x = x + width / 2 - socials_text.join(" | ").len() as u32 / 2;
         let mut sx = social_x;
+        let doc_y = (*y as u32) + self.layout.scroll_y;
         for (i, (name, url)) in socials_text.iter().zip(footer.social_links.iter()).enumerate() {
             if i > 0 {
                 render_text(&mut self.buffer, sx, *y as u32, " | ", &style);
                 sx += 3;
             }
             render_text(&mut self.buffer, sx, *y as u32, name, &link_style);
-            self.hit_map.register_link(Rect::new(sx, *y as u32, name.len() as u32, 1), url);
+            // Register hit region in document coordinates
+            self.hit_map.register_link(Rect::new(sx, doc_y, name.len() as u32, 1), url);
             sx += name.len() as u32;
         }
         
@@ -796,7 +823,8 @@ impl Renderer {
         };
         let source_x = x + width - source_text.len() as u32;
         render_text(&mut self.buffer, source_x, *y as u32, source_text, &link_style);
-        self.hit_map.register_link(Rect::new(source_x, *y as u32, source_text.len() as u32, 1), source_url);
+        // Register hit region in document coordinates
+        self.hit_map.register_link(Rect::new(source_x, doc_y, source_text.len() as u32, 1), source_url);
         
         *y += 2;
     }

@@ -15,6 +15,7 @@ export const renderer_is_hoverable: (a: number, b: number, c: number) => number;
 export const renderer_render: (a: number) => [number, number];
 export const renderer_get_width: (a: number) => number;
 export const renderer_get_height: (a: number) => number;
+export const renderer_get_hit_count: (a: number) => number;
 export const __wbg_charbuffer_free: (a: number, b: number) => void;
 export const charbuffer_new: (a: number, b: number) => number;
 export const charbuffer_width: (a: number) => number;

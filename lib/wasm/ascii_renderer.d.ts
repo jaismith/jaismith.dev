@@ -57,6 +57,10 @@ export class Renderer {
      */
     get_height(): number;
     /**
+     * Get number of registered hit regions (for debugging)
+     */
+    get_hit_count(): number;
+    /**
      * Get current scroll position
      */
     get_scroll(): number;
