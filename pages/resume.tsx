@@ -1,38 +1,15 @@
-import Resume from 'components/Resume';
-import Header, { HeaderProps } from 'components/Header';
-import { GetStaticProps } from 'next/types';
-import { compareExperiencesByTimeframe, Experience } from 'utils/experience';
+import { GetStaticProps } from 'next';
 import { getActivity, Datapoint } from 'utils/activity';
+import { compareExperiencesByTimeframe, Experience } from 'utils/experience';
+import type { ActivityPoint, ExperienceData } from 'components/AsciiCanvas';
 
-type Entity = {
-  name: string;
-  location: string;
-  details: string;
-};
-
-export type ResumeProps = {
-  education: Entity[],
-  organizations: Entity[],
-  experiences: Experience[]
+interface ResumePageProps {
+  activity: ActivityPoint[];
+  education: Array<{ name: string; location: string; details: string }>;
+  experiences: ExperienceData[];
 }
 
-const ResumePage = ({
-  activity,
-  education,
-  organizations,
-  experiences
-}: HeaderProps & ResumeProps) => (
-  <>
-    <Header activity={activity} />
-    <Resume
-      education={education}
-      organizations={organizations}
-      experiences={experiences}
-    />
-  </>
-);
-
-export const getStaticProps: GetStaticProps<HeaderProps & ResumeProps> = async () => {
+export const getStaticProps: GetStaticProps<ResumePageProps> = async () => {
   let activity: Datapoint[] = [{ x: 0, y: 0 }];
   try {
     activity = await getActivity();
@@ -48,25 +25,7 @@ export const getStaticProps: GetStaticProps<HeaderProps & ResumeProps> = async (
     }
   ];
 
-  const organizations = [
-    // {
-    //   name: 'Give Essential',
-    //   location: 'USA',
-    //   details: 'Humanitarian Aid | Lead Engineer'
-    // },
-    // {
-    //   name: 'HackDartmouth',
-    //   location: 'Hanover, NH',
-    //   details: 'Education | Developer, Organizer'
-    // },
-    // {
-    //   name: 'Ledyard Canoe Club',
-    //   location: 'Hanover, NH',
-    //   details: 'Outdoor Rec | Flatwater Leader'
-    // }
-  ];
-
-  const experiences = [
+  const experiences: Experience[] = [
     {
       workplace: 'Anysphere',
       location: 'New York, NY',
@@ -98,7 +57,7 @@ export const getStaticProps: GetStaticProps<HeaderProps & ResumeProps> = async (
       position: 'Software Engineer, Mentor, Core Staff',
       timeframe: 'January 2020 - July 2022',
       description: '- Served as lead engineer in cross-functional teams, working alongside designers and product managers with entrepreneurial partners.\n' +
-                  '- Architected and implemented the technical foundation for multiple projects, including a web productivity app (now [bydesign](https://bydesign.io)), and Dartmouth\'s Wi-Fi reporting system used to guide a multi-million-dollar campus infrastructure upgrade.\n' +
+                  '- Architected and implemented the technical foundation for multiple projects, including a web productivity app (now bydesign), and Dartmouth\'s Wi-Fi reporting system used to guide a multi-million-dollar campus infrastructure upgrade.\n' +
                   '- Created an automation framework that eliminated several days of termly operational workload related to hiring and mentorship processes.\n' +
                   '- Mentored beginner and intermediate engineers, teaching full stack frameworks and principles.',
     },
@@ -107,7 +66,7 @@ export const getStaticProps: GetStaticProps<HeaderProps & ResumeProps> = async (
       location: 'Kathmandu, Nepal',
       position: 'Software Engineer (iOS Developer)',
       timeframe: 'June 2019 - August 2019',
-      description: '- Lead iOS developer on a platform aiming to increase parent involvement in student learning at a local Nepali high school, now fully integrated with over 450 active users (responsible for the majority of the iOS user interface and frameworks).\n' +
+      description: '- Lead iOS developer on a platform aiming to increase parent involvement in student learning at a local Nepali high school, now fully integrated with over 450 active users.\n' +
                   '- Learned about the roles of software development, humanitarian engineering, and open data in Nepal.',
     },
     {
@@ -115,7 +74,7 @@ export const getStaticProps: GetStaticProps<HeaderProps & ResumeProps> = async (
       location: 'USA',
       position: 'Lead Engineer (Full Stack)',
       timeframe: 'April 2020 - September 2020',
-      description: '- Rapidly developed an Express API integrated with Cloud Firestore that streamlined matching between essential workers and donors during COVID-19, helping the program reach thousands of people, facilitate over $100K of individual donations, and secure over $60K in funding.\n' +
+      description: '- Rapidly developed an Express API integrated with Cloud Firestore that streamlined matching between essential workers and donors during COVID-19.\n' +
                   '- Built portal allowing 100+ volunteers to oversee thousands of ongoing essential worker/donor matches.',
     },
     {
@@ -124,7 +83,7 @@ export const getStaticProps: GetStaticProps<HeaderProps & ResumeProps> = async (
       position: 'Engineer',
       timeframe: 'September 2018 - June 2020',
       description: '- Helped to design and build the vehicle wiring harness for the 2019 competition vehicle.\n' +
-                  '- Designed and manufactured module to convert raw sensor signals to CAN messages using Altium Designer, SolidWorks, and C, simplifying the wiring harness and making it easier to add new sensors to the vehicle in the future.'
+                  '- Designed and manufactured module to convert raw sensor signals to CAN messages using Altium Designer, SolidWorks, and C.',
     },
     {
       workplace: 'HackDartmouth',
@@ -138,13 +97,21 @@ export const getStaticProps: GetStaticProps<HeaderProps & ResumeProps> = async (
 
   return {
     props: {
-      activity,
+      activity: activity.map(d => ({ x: d.x, y: d.y })),
       education,
-      organizations,
-      experiences: experiences.sort(compareExperiencesByTimeframe),
+      experiences: experiences.sort(compareExperiencesByTimeframe).map(exp => ({
+        workplace: exp.workplace,
+        location: exp.location,
+        position: exp.position,
+        timeframe: exp.timeframe,
+        description: exp.description,
+      })),
     },
     revalidate: 3600,
   };
 };
 
-export default ResumePage;
+// This page component doesn't render anything directly - _app.tsx handles everything
+export default function ResumePage(props: ResumePageProps) {
+  return null;
+}

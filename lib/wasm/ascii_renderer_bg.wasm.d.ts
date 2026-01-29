@@ -1,0 +1,35 @@
+/* tslint:disable */
+/* eslint-disable */
+export const memory: WebAssembly.Memory;
+export const __wbg_renderer_free: (a: number, b: number) => void;
+export const renderer_new: (a: number, b: number) => number;
+export const renderer_resize: (a: number, b: number, c: number) => void;
+export const renderer_set_scroll: (a: number, b: number) => void;
+export const renderer_get_scroll: (a: number) => number;
+export const renderer_get_content_height: (a: number) => number;
+export const renderer_set_hover: (a: number, b: number, c: number) => void;
+export const renderer_set_content: (a: number, b: number, c: number) => [number, number];
+export const renderer_load_image: (a: number, b: number, c: number, d: number, e: number, f: number, g: number) => void;
+export const renderer_hit_test: (a: number, b: number, c: number) => [number, number];
+export const renderer_is_hoverable: (a: number, b: number, c: number) => number;
+export const renderer_render: (a: number) => [number, number];
+export const renderer_get_width: (a: number) => number;
+export const renderer_get_height: (a: number) => number;
+export const renderer_get_hit_count: (a: number) => number;
+export const __wbg_charbuffer_free: (a: number, b: number) => void;
+export const charbuffer_new: (a: number, b: number) => number;
+export const charbuffer_width: (a: number) => number;
+export const charbuffer_height: (a: number) => number;
+export const charbuffer_resize: (a: number, b: number, c: number) => void;
+export const charbuffer_clear: (a: number) => void;
+export const charbuffer_clear_dirty: (a: number) => void;
+export const charbuffer_is_dirty: (a: number) => number;
+export const charbuffer_get_data: (a: number) => [number, number];
+export const init_panic_hook: () => void;
+export const create_renderer: (a: number, b: number) => number;
+export const __wbindgen_free: (a: number, b: number, c: number) => void;
+export const __wbindgen_malloc: (a: number, b: number) => number;
+export const __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
+export const __wbindgen_externrefs: WebAssembly.Table;
+export const __externref_table_dealloc: (a: number) => void;
+export const __wbindgen_start: () => void;

@@ -1,46 +1,33 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
+/* Global styles for ASCII renderer site */
 
-body {
+* {
+  box-sizing: border-box;
+  padding: 0;
   margin: 0;
-  font-family: "Titillium Web", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  &.dark {
-    background: #181a1b;
-  };
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  font-family: "Courier New", Consolas, Monaco, monospace;
+  background: #000;
 }
 
-.app {
-  text-align: center;
-  min-width: 750px;
-  transition: background 0.3s;
+/* Hide scrollbars globally */
+::-webkit-scrollbar {
+  display: none;
+}
 
-  &.mobile {
-    min-width: 0;
-  }
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
-  &.light {
-    --background-color: white;
-    --text-color: black;
-    --text-color-nav: black;
-    --chart-color: #0054B4;
-  }
-
-  &.dark {
-    --background-color: #181a1b;
-    --text-color: rgba(249, 249, 249, 0.8);
-    --text-color-nav: rgb(186, 181, 171);
-    --chart-color: rgb(96, 182, 255);
-  }
-
-  background: var(--background-color);
-  color: var(--text-color);
+/* Ensure canvas fills the viewport */
+#__next {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }

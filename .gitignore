@@ -37,3 +37,7 @@ next-env.d.ts
 
 .env
 .vercel
+
+# Rust/WASM build artifacts
+wasm-renderer/target
+wasm-renderer/pkg
