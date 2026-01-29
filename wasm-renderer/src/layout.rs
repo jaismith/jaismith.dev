@@ -157,10 +157,11 @@ impl LayoutContext {
         let padding = self.get_padding();
         let available = self.viewport_width.saturating_sub(padding.left + padding.right);
         
+        // Higher limits for smaller font / higher density rendering
         match self.breakpoint {
             Breakpoint::Mobile => available,
-            Breakpoint::Tablet => available.min(90),
-            Breakpoint::Desktop => available.min(120),
+            Breakpoint::Tablet => available.min(160),
+            Breakpoint::Desktop => available.min(200),
         }
     }
 

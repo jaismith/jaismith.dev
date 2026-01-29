@@ -226,11 +226,11 @@ impl Renderer {
 
     /// Load an image for ASCII conversion
     pub fn load_image(&mut self, id: &str, data: &[u8], width: u32, height: u32) {
-        // Convert to ASCII with appropriate width based on breakpoint
+        // Convert to ASCII with appropriate width based on breakpoint (1.75x for higher detail)
         let target_width = match self.layout.breakpoint {
-            Breakpoint::Mobile => 30,
-            Breakpoint::Tablet => 40,
-            Breakpoint::Desktop => 50,
+            Breakpoint::Mobile => 52,
+            Breakpoint::Tablet => 70,
+            Breakpoint::Desktop => 88,
         };
         
         let ascii = image_to_ascii(data, width, height, target_width, RAMP_STANDARD, false);
@@ -317,8 +317,8 @@ impl Renderer {
         
         let content_height = match content.page {
             PageType::Projects => {
-                // Each project takes roughly 25-30 lines
-                content.projects.len() as u32 * 30
+                // Each project takes roughly 40 lines with 1.75x images
+                content.projects.len() as u32 * 40
             }
             PageType::Resume => {
                 // Each experience takes roughly 15 lines
@@ -635,10 +635,11 @@ impl Renderer {
         
         let img_start_y = *y;
         
-        // Render image if loaded
+        // Render image if loaded (1.75x height for higher detail)
+        let max_img_height = 26u32;
         if let Some(img) = self.images.get(&project.image_id) {
             if *y >= 0 {
-                for iy in 0..img.height.min(15) {
+                for iy in 0..img.height.min(max_img_height) {
                     for ix in 0..img.width.min(img_width) {
                         if let Some(ch) = img.get(ix, iy) {
                             let buf_y = (*y + iy as i32) as u32;
@@ -651,7 +652,7 @@ impl Renderer {
             }
             
             if self.layout.breakpoint == Breakpoint::Mobile {
-                *y += img.height.min(15) as i32 + 1;
+                *y += img.height.min(max_img_height) as i32 + 1;
             }
         }
         
@@ -663,7 +664,7 @@ impl Renderer {
             if self.layout.breakpoint == Breakpoint::Mobile {
                 *y += lines as i32;
             } else {
-                *y = img_start_y + (lines as i32).max(15);
+                *y = img_start_y + (lines as i32).max(max_img_height as i32);
             }
         } else {
             *y += 10;

@@ -12,11 +12,11 @@ interface AsciiCanvasProps {
   imageUrls: Map<string, string>;
 }
 
-// Character dimensions for the monospace font
-const CHAR_WIDTH = 9.6;
-const CHAR_HEIGHT = 18;
+// Character dimensions for the monospace font (50% size for higher density)
+const CHAR_WIDTH = 4.8;
+const CHAR_HEIGHT = 9;
 const FONT_FAMILY = '"Courier New", Consolas, Monaco, monospace';
-const FONT_SIZE = 15;
+const FONT_SIZE = 7.5;
 
 export function AsciiCanvas({ content, imageUrls }: AsciiCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
